@@ -1,0 +1,12 @@
+.option {
+  display: flex;
+  align-items: center;
+
+  &__img {
+    max-width: 25px;
+  }
+
+  &__txt {
+    margin-left: 10px;
+  }
+}

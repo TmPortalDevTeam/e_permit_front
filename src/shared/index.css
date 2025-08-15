@@ -1,0 +1,43 @@
+:root {
+	--main-bg: #ffffff;
+	--second-bg: #f1f5f8;
+	--txt-color: #181c32;
+	--border-color: #e0e0e0;
+
+	--main-bg-light: #f3f4f6;
+	--second-bg-light: #e9e9e9;
+	--txt-color-light: #181c32;
+	--border-color-light: #e0e0e0;
+
+	--main-bg-dark: #242424;
+	--second-bg-dark: #151515;
+	--txt-color-dark: #ffffff;
+	--border-color-dark: #515151;
+
+	--border-radius: 8px;
+}
+
+body {
+	/* font-family: "Lato", sans-serif; */
+	font-family: 'Inter', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	letter-spacing: 0.7px;
+	margin: 0;
+	padding: 0;
+	color: var(--txt-color);
+}
+
+.theme-mode-light {
+	--main-bg: var(--main-bg-light);
+	--second-bg: var(--second-bg-light);
+	--txt-color: var(--txt-color-light);
+	--border-color: var(--border-color-light);
+}
+
+.theme-mode-dark {
+	--main-bg: var(--main-bg-dark);
+	--second-bg: var(--second-bg-dark);
+	--txt-color: var(--txt-color-dark);
+	--border-color: var(--border-color-dark);
+}
