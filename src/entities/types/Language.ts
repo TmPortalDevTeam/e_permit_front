@@ -1,3 +1,3 @@
-import { langs } from "@/entities/constants";
+import { langs } from "@/shared/constants";
 
 export type Language = typeof langs[number];

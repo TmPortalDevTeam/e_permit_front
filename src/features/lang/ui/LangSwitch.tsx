@@ -9,7 +9,7 @@ import tm from "@/assets/flags/tm.jpg";
 // storage controller
 import { LocalStorage } from "@/shared/lib";
 // storage keys
-import { storeKeys } from "@/entities/constants";
+import { storeKeys } from "@/shared/constants";
 // types
 import type { Language } from "@/entities/types";
 // language changer

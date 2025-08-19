@@ -5,7 +5,7 @@ import translationEN from "./en/translation.json";
 import translationRU from "./ru/translation.json";
 import translationTK from "./tk/translation.json";
 // store
-import { storeKeys } from "@/entities/constants";
+import { storeKeys } from "@/shared/constants";
 import { LocalStorage } from "@/shared/lib";
 // types
 import type { Language } from "@/entities/types";

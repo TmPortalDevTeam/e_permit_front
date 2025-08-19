@@ -1,14 +1,13 @@
 import { type ReactNode, useContext, useEffect, useState } from "react";
 // components
 import { Layout as AntLayout, Breadcrumb } from "antd";
+import { ProfileLogout } from "@/features/profile";
 // theme controller
-import { LangSwitch } from "@/features/lang";
 import { ThemeContext } from "@/features/theme";
 import { ThemeSwitch } from '@/features/theme';
 import MenuItems from "./MenuItems";
 // styles
 import styles from "./Layout.module.scss";
-// import { LogoutBtn } from "features/Logout";
 // hooks
 import { useWindowSize } from "@/shared/lib";
 
@@ -66,11 +65,14 @@ function Layout(props: LayoutProps) {
               <ThemeSwitch />
             </div>
             <div className={styles.header__item}>
+              <ProfileLogout />
+            </div>
+            {/* <div className={styles.header__item}>
               <LangSwitch />
             </div>
             <div className={styles.header__item}>
-              {/* <LogoutBtn /> */}
-            </div>
+              <LogoutBtn />
+            </div> */}
           </Header>
           <Content className={styles.content}>
             {breadcrumbItems && (

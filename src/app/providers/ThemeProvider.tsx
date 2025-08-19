@@ -24,6 +24,9 @@ const ThemeContextProvider = (props: ThemeContextProviderProps) => {
          <ConfigProvider
             theme={{
                algorithm: state.themeMode === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm,
+               token: {
+                  colorPrimary: '#008027',
+               }
             }}
          >
             {children}

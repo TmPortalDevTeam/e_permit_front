@@ -1,0 +1,1 @@
+export { default as ProfileLogout } from './ui/ProfileLogout';

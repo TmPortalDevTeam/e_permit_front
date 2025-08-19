@@ -41,3 +41,13 @@ body {
 	--txt-color: var(--txt-color-dark);
 	--border-color: var(--border-color-dark);
 }
+
+
+.formItemMargin {
+	margin: 0;
+	margin-bottom: 5px;
+}
+
+.w100 {
+	width: 100%;
+}

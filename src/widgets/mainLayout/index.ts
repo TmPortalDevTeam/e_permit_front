@@ -1,1 +1,1 @@
-export { default as MainLayout } from './ui';
+export { Layout as MainLayout, LoginLayout } from './ui';

@@ -9,10 +9,11 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as LayoutRouteRouteImport } from './routes/_layout/route'
 import { Route as LayoutIndexRouteImport } from './routes/_layout/index'
-import { Route as LayoutVisitorsRouteImport } from './routes/_layout/visitors'
 import { Route as LayoutUsersRouteImport } from './routes/_layout/users'
+import { Route as LayoutSupervisorsRouteImport } from './routes/_layout/supervisors'
 import { Route as LayoutQuotasRouteImport } from './routes/_layout/quotas'
 import { Route as LayoutEPermitRouteImport } from './routes/_layout/e-permit'
 import { Route as LayoutCheckmarksRouteImport } from './routes/_layout/checkmarks'
@@ -21,6 +22,11 @@ import { Route as LayoutAuthoritiesRouteImport } from './routes/_layout/authorit
 import { Route as LayoutActivePermitsRouteImport } from './routes/_layout/active-permits'
 import { Route as LayoutAccountantRouteImport } from './routes/_layout/accountant'
 
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LayoutRouteRoute = LayoutRouteRouteImport.update({
   id: '/_layout',
   getParentRoute: () => rootRouteImport,
@@ -30,14 +36,14 @@ const LayoutIndexRoute = LayoutIndexRouteImport.update({
   path: '/',
   getParentRoute: () => LayoutRouteRoute,
 } as any)
-const LayoutVisitorsRoute = LayoutVisitorsRouteImport.update({
-  id: '/visitors',
-  path: '/visitors',
-  getParentRoute: () => LayoutRouteRoute,
-} as any)
 const LayoutUsersRoute = LayoutUsersRouteImport.update({
   id: '/users',
   path: '/users',
+  getParentRoute: () => LayoutRouteRoute,
+} as any)
+const LayoutSupervisorsRoute = LayoutSupervisorsRouteImport.update({
+  id: '/supervisors',
+  path: '/supervisors',
   getParentRoute: () => LayoutRouteRoute,
 } as any)
 const LayoutQuotasRoute = LayoutQuotasRouteImport.update({
@@ -77,6 +83,7 @@ const LayoutAccountantRoute = LayoutAccountantRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
+  '/login': typeof LoginRoute
   '/accountant': typeof LayoutAccountantRoute
   '/active-permits': typeof LayoutActivePermitsRoute
   '/authorities': typeof LayoutAuthoritiesRoute
@@ -84,11 +91,12 @@ export interface FileRoutesByFullPath {
   '/checkmarks': typeof LayoutCheckmarksRoute
   '/e-permit': typeof LayoutEPermitRoute
   '/quotas': typeof LayoutQuotasRoute
+  '/supervisors': typeof LayoutSupervisorsRoute
   '/users': typeof LayoutUsersRoute
-  '/visitors': typeof LayoutVisitorsRoute
   '/': typeof LayoutIndexRoute
 }
 export interface FileRoutesByTo {
+  '/login': typeof LoginRoute
   '/accountant': typeof LayoutAccountantRoute
   '/active-permits': typeof LayoutActivePermitsRoute
   '/authorities': typeof LayoutAuthoritiesRoute
@@ -96,13 +104,14 @@ export interface FileRoutesByTo {
   '/checkmarks': typeof LayoutCheckmarksRoute
   '/e-permit': typeof LayoutEPermitRoute
   '/quotas': typeof LayoutQuotasRoute
+  '/supervisors': typeof LayoutSupervisorsRoute
   '/users': typeof LayoutUsersRoute
-  '/visitors': typeof LayoutVisitorsRoute
   '/': typeof LayoutIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_layout': typeof LayoutRouteRouteWithChildren
+  '/login': typeof LoginRoute
   '/_layout/accountant': typeof LayoutAccountantRoute
   '/_layout/active-permits': typeof LayoutActivePermitsRoute
   '/_layout/authorities': typeof LayoutAuthoritiesRoute
@@ -110,13 +119,14 @@ export interface FileRoutesById {
   '/_layout/checkmarks': typeof LayoutCheckmarksRoute
   '/_layout/e-permit': typeof LayoutEPermitRoute
   '/_layout/quotas': typeof LayoutQuotasRoute
+  '/_layout/supervisors': typeof LayoutSupervisorsRoute
   '/_layout/users': typeof LayoutUsersRoute
-  '/_layout/visitors': typeof LayoutVisitorsRoute
   '/_layout/': typeof LayoutIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/login'
     | '/accountant'
     | '/active-permits'
     | '/authorities'
@@ -124,11 +134,12 @@ export interface FileRouteTypes {
     | '/checkmarks'
     | '/e-permit'
     | '/quotas'
+    | '/supervisors'
     | '/users'
-    | '/visitors'
     | '/'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/login'
     | '/accountant'
     | '/active-permits'
     | '/authorities'
@@ -136,12 +147,13 @@ export interface FileRouteTypes {
     | '/checkmarks'
     | '/e-permit'
     | '/quotas'
+    | '/supervisors'
     | '/users'
-    | '/visitors'
     | '/'
   id:
     | '__root__'
     | '/_layout'
+    | '/login'
     | '/_layout/accountant'
     | '/_layout/active-permits'
     | '/_layout/authorities'
@@ -149,17 +161,25 @@ export interface FileRouteTypes {
     | '/_layout/checkmarks'
     | '/_layout/e-permit'
     | '/_layout/quotas'
+    | '/_layout/supervisors'
     | '/_layout/users'
-    | '/_layout/visitors'
     | '/_layout/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   LayoutRouteRoute: typeof LayoutRouteRouteWithChildren
+  LoginRoute: typeof LoginRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_layout': {
       id: '/_layout'
       path: ''
@@ -174,18 +194,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutIndexRouteImport
       parentRoute: typeof LayoutRouteRoute
     }
-    '/_layout/visitors': {
-      id: '/_layout/visitors'
-      path: '/visitors'
-      fullPath: '/visitors'
-      preLoaderRoute: typeof LayoutVisitorsRouteImport
-      parentRoute: typeof LayoutRouteRoute
-    }
     '/_layout/users': {
       id: '/_layout/users'
       path: '/users'
       fullPath: '/users'
       preLoaderRoute: typeof LayoutUsersRouteImport
+      parentRoute: typeof LayoutRouteRoute
+    }
+    '/_layout/supervisors': {
+      id: '/_layout/supervisors'
+      path: '/supervisors'
+      fullPath: '/supervisors'
+      preLoaderRoute: typeof LayoutSupervisorsRouteImport
       parentRoute: typeof LayoutRouteRoute
     }
     '/_layout/quotas': {
@@ -248,8 +268,8 @@ interface LayoutRouteRouteChildren {
   LayoutCheckmarksRoute: typeof LayoutCheckmarksRoute
   LayoutEPermitRoute: typeof LayoutEPermitRoute
   LayoutQuotasRoute: typeof LayoutQuotasRoute
+  LayoutSupervisorsRoute: typeof LayoutSupervisorsRoute
   LayoutUsersRoute: typeof LayoutUsersRoute
-  LayoutVisitorsRoute: typeof LayoutVisitorsRoute
   LayoutIndexRoute: typeof LayoutIndexRoute
 }
 
@@ -261,8 +281,8 @@ const LayoutRouteRouteChildren: LayoutRouteRouteChildren = {
   LayoutCheckmarksRoute: LayoutCheckmarksRoute,
   LayoutEPermitRoute: LayoutEPermitRoute,
   LayoutQuotasRoute: LayoutQuotasRoute,
+  LayoutSupervisorsRoute: LayoutSupervisorsRoute,
   LayoutUsersRoute: LayoutUsersRoute,
-  LayoutVisitorsRoute: LayoutVisitorsRoute,
   LayoutIndexRoute: LayoutIndexRoute,
 }
 
@@ -272,6 +292,7 @@ const LayoutRouteRouteWithChildren = LayoutRouteRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   LayoutRouteRoute: LayoutRouteRouteWithChildren,
+  LoginRoute: LoginRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

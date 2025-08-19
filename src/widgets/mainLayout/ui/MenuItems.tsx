@@ -28,9 +28,9 @@ function MenuItems() {
           label: <Link to="/">Baş sahypa</Link>,
         },
         {
-          key: "/visitors",
+          key: "/supervisors",
           icon: <SecurityScanOutlined />,
-          label: <Link to="/visitors">Gözegçiler</Link>,
+          label: <Link to="/supervisors">Gözegçiler</Link>,
         },
         {
           key: "/users",
