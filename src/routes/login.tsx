@@ -1,6 +1,6 @@
+import { LoginWidget } from '@/widgets/login';
 import LoginLayout from '@/widgets/mainLayout/ui/LoginLayout';
 import { createFileRoute } from '@tanstack/react-router'
-import { Flex } from 'antd';
 
 export const Route = createFileRoute('/login')({
   component: Login,
@@ -9,9 +9,7 @@ export const Route = createFileRoute('/login')({
 function Login() {
   return (
     <LoginLayout>
-      <Flex >
-
-      </Flex>
+      <LoginWidget />
     </LoginLayout>
   )
 }
