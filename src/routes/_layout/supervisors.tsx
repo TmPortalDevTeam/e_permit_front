@@ -3,6 +3,8 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Button, Flex } from 'antd'
 import { PlusOutlined } from "@ant-design/icons";
 import { useState } from 'react';
+import { AuthMiddleware } from '@/features/auth';
+import { roles } from '@/shared/constants';
 
 export const Route = createFileRoute('/_layout/supervisors')({
   component: Supervisors,
@@ -12,7 +14,7 @@ function Supervisors() {
   const [showAddSupervisorModal, setShowAddSupervisorModal] = useState(false);
 
   return (
-    <>
+    <AuthMiddleware toRolesAvailable={[...roles]}>
       {
         showAddSupervisorModal &&
         <SupervisorCreateModal
@@ -32,6 +34,6 @@ function Supervisors() {
 
         <SupervisorsTable />
       </Flex>
-    </>
+    </AuthMiddleware>
   )
 }

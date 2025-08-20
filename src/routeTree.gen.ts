@@ -15,6 +15,7 @@ import { Route as LayoutIndexRouteImport } from './routes/_layout/index'
 import { Route as LayoutUsersRouteImport } from './routes/_layout/users'
 import { Route as LayoutSupervisorsRouteImport } from './routes/_layout/supervisors'
 import { Route as LayoutQuotasRouteImport } from './routes/_layout/quotas'
+import { Route as LayoutNotFoundRouteImport } from './routes/_layout/not-found'
 import { Route as LayoutEPermitRouteImport } from './routes/_layout/e-permit'
 import { Route as LayoutCheckmarksRouteImport } from './routes/_layout/checkmarks'
 import { Route as LayoutBlackHistoryRouteImport } from './routes/_layout/black-history'
@@ -49,6 +50,11 @@ const LayoutSupervisorsRoute = LayoutSupervisorsRouteImport.update({
 const LayoutQuotasRoute = LayoutQuotasRouteImport.update({
   id: '/quotas',
   path: '/quotas',
+  getParentRoute: () => LayoutRouteRoute,
+} as any)
+const LayoutNotFoundRoute = LayoutNotFoundRouteImport.update({
+  id: '/not-found',
+  path: '/not-found',
   getParentRoute: () => LayoutRouteRoute,
 } as any)
 const LayoutEPermitRoute = LayoutEPermitRouteImport.update({
@@ -90,6 +96,7 @@ export interface FileRoutesByFullPath {
   '/black-history': typeof LayoutBlackHistoryRoute
   '/checkmarks': typeof LayoutCheckmarksRoute
   '/e-permit': typeof LayoutEPermitRoute
+  '/not-found': typeof LayoutNotFoundRoute
   '/quotas': typeof LayoutQuotasRoute
   '/supervisors': typeof LayoutSupervisorsRoute
   '/users': typeof LayoutUsersRoute
@@ -103,6 +110,7 @@ export interface FileRoutesByTo {
   '/black-history': typeof LayoutBlackHistoryRoute
   '/checkmarks': typeof LayoutCheckmarksRoute
   '/e-permit': typeof LayoutEPermitRoute
+  '/not-found': typeof LayoutNotFoundRoute
   '/quotas': typeof LayoutQuotasRoute
   '/supervisors': typeof LayoutSupervisorsRoute
   '/users': typeof LayoutUsersRoute
@@ -118,6 +126,7 @@ export interface FileRoutesById {
   '/_layout/black-history': typeof LayoutBlackHistoryRoute
   '/_layout/checkmarks': typeof LayoutCheckmarksRoute
   '/_layout/e-permit': typeof LayoutEPermitRoute
+  '/_layout/not-found': typeof LayoutNotFoundRoute
   '/_layout/quotas': typeof LayoutQuotasRoute
   '/_layout/supervisors': typeof LayoutSupervisorsRoute
   '/_layout/users': typeof LayoutUsersRoute
@@ -133,6 +142,7 @@ export interface FileRouteTypes {
     | '/black-history'
     | '/checkmarks'
     | '/e-permit'
+    | '/not-found'
     | '/quotas'
     | '/supervisors'
     | '/users'
@@ -146,6 +156,7 @@ export interface FileRouteTypes {
     | '/black-history'
     | '/checkmarks'
     | '/e-permit'
+    | '/not-found'
     | '/quotas'
     | '/supervisors'
     | '/users'
@@ -160,6 +171,7 @@ export interface FileRouteTypes {
     | '/_layout/black-history'
     | '/_layout/checkmarks'
     | '/_layout/e-permit'
+    | '/_layout/not-found'
     | '/_layout/quotas'
     | '/_layout/supervisors'
     | '/_layout/users'
@@ -215,6 +227,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutQuotasRouteImport
       parentRoute: typeof LayoutRouteRoute
     }
+    '/_layout/not-found': {
+      id: '/_layout/not-found'
+      path: '/not-found'
+      fullPath: '/not-found'
+      preLoaderRoute: typeof LayoutNotFoundRouteImport
+      parentRoute: typeof LayoutRouteRoute
+    }
     '/_layout/e-permit': {
       id: '/_layout/e-permit'
       path: '/e-permit'
@@ -267,6 +286,7 @@ interface LayoutRouteRouteChildren {
   LayoutBlackHistoryRoute: typeof LayoutBlackHistoryRoute
   LayoutCheckmarksRoute: typeof LayoutCheckmarksRoute
   LayoutEPermitRoute: typeof LayoutEPermitRoute
+  LayoutNotFoundRoute: typeof LayoutNotFoundRoute
   LayoutQuotasRoute: typeof LayoutQuotasRoute
   LayoutSupervisorsRoute: typeof LayoutSupervisorsRoute
   LayoutUsersRoute: typeof LayoutUsersRoute
@@ -280,6 +300,7 @@ const LayoutRouteRouteChildren: LayoutRouteRouteChildren = {
   LayoutBlackHistoryRoute: LayoutBlackHistoryRoute,
   LayoutCheckmarksRoute: LayoutCheckmarksRoute,
   LayoutEPermitRoute: LayoutEPermitRoute,
+  LayoutNotFoundRoute: LayoutNotFoundRoute,
   LayoutQuotasRoute: LayoutQuotasRoute,
   LayoutSupervisorsRoute: LayoutSupervisorsRoute,
   LayoutUsersRoute: LayoutUsersRoute,

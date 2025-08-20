@@ -7,8 +7,8 @@ export const Route = createFileRoute('/_layout')({
 
 function _AppLayout() {
   return (
-    <MainLayout>
-      <Outlet />
-    </MainLayout>
+      <MainLayout>
+        <Outlet />
+      </MainLayout>
   )
 }

@@ -1,12 +1,16 @@
 import { Button, Flex, Form, Input, Typography } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import { useNavigate } from '@tanstack/react-router';
+import { useLogin } from '@/features/auth';
+import type { LoginDto } from '@/entities/auth';
 
 function LoginWidget() {
-  const navigate = useNavigate();
-  const onSubmit = (values: any) => {
-    console.log(values);
-    navigate({ to: '/', replace: true });
+  const {
+    mutate: login,
+    isPending: loginPending,
+  } = useLogin();
+
+  const onSubmit = (values: LoginDto) => {
+    login(values);
   }
 
   return (
@@ -15,17 +19,18 @@ function LoginWidget() {
       <Typography.Title level={3}>
         Içeri girmek
       </Typography.Title>
-      <Form
+      <Form<LoginDto>
         style={{ marginTop: 20 }}
         initialValues={{
-
-        }}
+          password: '',
+          username: '',
+        } as LoginDto}
         onFinish={onSubmit}
       >
-        <Form.Item<any>
+        <Form.Item<LoginDto>
           labelCol={{ span: 24 }}
           label="Ullanyjy ady"
-          name='name'
+          name='username'
           rules={[
             {
               required: true,
@@ -38,7 +43,7 @@ function LoginWidget() {
             style={{ minWidth: 300 }}
           />
         </Form.Item>
-        <Form.Item<any>
+        <Form.Item<LoginDto>
           labelCol={{ span: 24 }}
           label="Açar sözi"
           name='password'
@@ -52,13 +57,14 @@ function LoginWidget() {
           <Input.Password
             placeholder={"Açar sözi"}
             iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+
           />
         </Form.Item>
 
         <Button
           type="primary"
           htmlType="submit"
-          loading={false}
+          loading={loginPending}
           block
         >
           Içeri gir
