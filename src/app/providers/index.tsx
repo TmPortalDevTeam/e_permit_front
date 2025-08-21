@@ -10,7 +10,7 @@ function Providers() {
     <QueryClientProvider>
       <TranslationProvider>
         <ThemeProvider>
-          <Toaster position='top-right' />
+          <Toaster position='top-center' />
           <RouterProvider router={router} />
         </ThemeProvider>
       </TranslationProvider>

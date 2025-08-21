@@ -1,29 +1,33 @@
+import { useGetSupervisors, type Supervisor } from "@/entities/supervisors";
 import perPageLimit from "@/shared/constants/perPageLimit";
+import { Button, Space } from "antd";
+import {
+  DeleteOutlined,
+} from '@ant-design/icons';
 import Table, { type ColumnsType } from "antd/es/table";
-import { type ChangeEvent, useState } from "react";
-import { useTranslation } from "react-i18next";
-// import { customToast, delayDebounce } from 'shared/lib';
+import { useState } from "react";
+import { useDeleteSupervisor } from "@/features/supervisors";
 
 function SupervisorsTable() {
-  const { t } = useTranslation();
-
   // filters
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(perPageLimit);
 
   // query
-  // const {
-  //   data: colors,
-  //   isLoading: colorsLoading,
-  // } = useGetColors({
-  //   limit,
-  //   order_direction,
-  //   page,
-  //   search,
-  //   status
-  // })
+  const {
+    data: supervisors,
+    isLoading: supervisorsLoading,
+  } = useGetSupervisors({
+    page,
+    perPage: limit
+  });
+  // mutation
+  const {
+    mutate: deleteSupervisor,
+    isPending: deletingSupervisor
+  } = useDeleteSupervisor();
 
-  const tableColumns: ColumnsType<any> = [
+  const tableColumns: ColumnsType<Supervisor> = [
     {
       title: '№',
       dataIndex: 'id',
@@ -31,29 +35,51 @@ function SupervisorsTable() {
       render: (_, __, index) => <>{(page - 1) * limit + index + 1}</>
     },
     {
-      title: t('name'),
-      dataIndex: 'name',
-      key: 'name',
-      responsive: ['sm']
+      title: 'Ady',
+      dataIndex: 'username',
+      key: 'username',
     },
+    {
+      title: 'Roly',
+      dataIndex: 'role',
+      key: 'role',
+    },
+    {
+      title: 'Hereketler',
+      key: 'actions',
+      render: (_, record,) => (
+        <Space size={5}>
+          <Button
+            onClick={() =>
+              deleteSupervisor?.(record.uuid)
+            }
+            shape="circle"
+            loading={deletingSupervisor}
+            danger
+          >
+            <DeleteOutlined />
+          </Button>
+        </Space>
+      )
+    }
   ];
 
   return (
     <Table
       columns={tableColumns}
-      rowKey={(record) => record.id}
-      // dataSource={colors?.content}
-      // loading={colorsLoading}
+      rowKey={(record) => record.uuid}
+      dataSource={supervisors?.data}
+      loading={supervisorsLoading}
       pagination={{
         defaultPageSize: limit,
         position: ["bottomRight"],
-        pageSizeOptions: ["25", "50", "75", "125", "250"],
+        pageSizeOptions: ["25", "50"],
         showSizeChanger: true,
         onChange: (page, pageSize) => {
           setPage(page);
           setLimit(pageSize);
         },
-        // total: colors?.totalRecords,
+        total: supervisors?.count || 0,
       }}
     />
   )

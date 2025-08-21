@@ -20,7 +20,7 @@ reqInstance.interceptors.response.use(
       storage.setItem(storeKeys.userData);
       router.navigate({ to: '/login', replace: true });
     }
-    return err;
+    throw err.response || err;
   }
 );
 
