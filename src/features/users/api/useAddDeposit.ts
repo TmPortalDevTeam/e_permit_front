@@ -1,19 +1,15 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { createSupervisor } from "@/features/supervisors";
-import type { SupervisorCreateDto } from "@/entities/supervisors";
+import { useMutation } from "@tanstack/react-query"
 import { isErrorResponseType } from "@/entities/types/utils";
 import toast from "react-hot-toast";
 import type { ErrorResponseType } from "@/entities/types";
+import type { AddDepositDto } from "@/entities/users";
+import { addDeposit } from ".";
 
-const useCreateSupervisor = () => {
-  const queryClient = useQueryClient();
+const useAddDeposit = () => {
   return useMutation({
-    mutationFn: (dto: SupervisorCreateDto) => createSupervisor(dto),
+    mutationFn: (dto: AddDepositDto) => addDeposit(dto),
     onSuccess: () => {
-      toast.success('Üstünlikli döredildi')
-      queryClient.invalidateQueries({
-        queryKey: ['supervisors']
-      })
+      toast.success('Üstünlikli goşuldy')
     },
     onError: (err: { data: ErrorResponseType }) => {
       if (isErrorResponseType(err.data)) {
@@ -28,4 +24,4 @@ const useCreateSupervisor = () => {
   });
 }
 
-export default useCreateSupervisor
+export default useAddDeposit
