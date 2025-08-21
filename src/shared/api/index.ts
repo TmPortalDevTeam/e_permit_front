@@ -17,6 +17,7 @@ reqInstance.interceptors.response.use(
 
     if (err.response.status === 401 || !token) {
       storage.setItem(storeKeys.authToken);
+      storage.setItem(storeKeys.userData);
       router.navigate({ to: '/login', replace: true });
     }
     return err;
@@ -26,7 +27,9 @@ reqInstance.interceptors.response.use(
 reqInstance.interceptors.request.use(
   (req) => {
     const accessToken = storage.getItem(storeKeys.authToken) as undefined | string;
-    req.headers.authorization = `Bearer ${accessToken}`;
+    if (accessToken)
+      req.headers.authorization = `Bearer ${accessToken}`;
+
     return req;
   },
   (err) => {

@@ -1,7 +1,12 @@
 import { getMe } from "@/entities/auth";
 import type { Roles } from "@/entities/types";
+import { storeKeys } from "@/shared/constants";
+import { LocalStorage } from "@/shared/lib";
 import { Navigate, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
+import { isUser } from "../utils";
+
+const storage = LocalStorage.getInstance();
 
 type AuthMiddlewareProps = {
   children: ReactNode;
@@ -24,6 +29,10 @@ function AuthMiddleware(props: AuthMiddlewareProps) {
           return;
         }
         setUserRole(userData.role)
+        const userFromLocalStore = storage.getItem(storeKeys.userData);
+        if (isUser(userFromLocalStore)) { // update users role in local storage
+          storage.setItem(storeKeys.userData, { ...userFromLocalStore, role: userData.role })
+        }
       } catch (error) {
         navigate({ to: "/login", replace: true });
       } finally {

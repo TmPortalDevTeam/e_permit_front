@@ -3,24 +3,48 @@ import {
   DownOutlined,
   LogoutOutlined,
 } from "@ant-design/icons";
+import { LocalStorage } from "@/shared/lib";
+import { useMemo } from "react";
+import { storeKeys } from "@/shared/constants";
+import { isUser } from "@/features/auth/utils";
+import { useLogout } from "@/features/auth";
 
-const items: MenuProps['items'] = [
-  {
-    key: '1',
-    label: 'User name',
-  },
-  {
-    key: '2',
-    label: 'Çykmak',
-    extra: <LogoutOutlined />,
-    onClick: () => { }
-  }
-]
+const storage = LocalStorage.getInstance();
+
 function ProfileLogout() {
+
+  const {
+    mutate: logout,
+    isPending: logoutPending
+  } = useLogout();
+
+  const userName = useMemo(() => {
+    const localUser = storage.getItem(storeKeys.userData)
+    if (isUser(localUser))
+      return localUser.username;
+    return null;
+  }, []);
+
+  const items: MenuProps['items'] = useMemo(() => {
+    return [
+      {
+        key: '1',
+        label: userName,
+      },
+      {
+        key: '2',
+        label: 'Çykmak',
+        extra: <LogoutOutlined />,
+        onClick: () => logout(),
+        disabled: logoutPending
+      }
+    ]
+  }, [userName]);
+
   return (
     <Dropdown menu={{ items }}>
       <Space>
-        User name
+        {userName}
         <DownOutlined />
       </Space>
     </Dropdown>
