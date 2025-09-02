@@ -1,5 +1,5 @@
 import { useGetSupervisors, type Supervisor } from "@/entities/supervisors";
-import perPageLimit from "@/shared/constants/perPageLimit";
+import { perPageLimit } from "@/shared/constants";
 import { Button, Space } from "antd";
 import {
   DeleteOutlined,

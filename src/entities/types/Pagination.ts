@@ -1,4 +1,5 @@
-export type Pagination<T> = {
+export type Pagination<T, K extends string = "data"> = {
   count: number
-  data: T
+} & {
+  [P in K]: T
 }

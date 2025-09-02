@@ -1,3 +1,3 @@
-const perPageLimit = 15;
+const perPageLimit = 10;
 
 export default perPageLimit;
