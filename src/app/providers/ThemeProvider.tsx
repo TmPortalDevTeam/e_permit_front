@@ -1,4 +1,4 @@
-import { ConfigProvider, theme } from "antd";
+import { App as AntdApp, ConfigProvider, theme } from "antd";
 import { ThemeContext, createInitialTheme, themeReducer } from "@/features/theme";
 import { useEffect, useReducer, type ReactNode } from "react";
 
@@ -29,7 +29,9 @@ const ThemeContextProvider = (props: ThemeContextProviderProps) => {
                }
             }}
          >
-            {children}
+            <AntdApp>
+               {children}
+            </AntdApp>
          </ConfigProvider>
       </ThemeContext.Provider>
    )

@@ -1,1 +1,9 @@
-{}
+{
+  "successfullyCreated": "Üstünlikli döredildi",
+  "successfullyDeleted": "Üstünlikli pozuldy",
+  "somethingWentWrong": "Bir zat nädogry boldy",
+  "addSupervisor": "Gözegçi goşmak",
+  "areYouSure": "Siz hakykatdan hem saýlanan herekedi ýerine ýetirmekçimi?",
+  "yes": "Hawa",
+  "no": "Ýok"
+}

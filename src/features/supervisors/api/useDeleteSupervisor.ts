@@ -3,13 +3,15 @@ import { deleteSupervisor } from "@/features/supervisors";
 import toast from "react-hot-toast";
 import type { ErrorResponseType } from "@/entities/types";
 import { isErrorResponseType } from "@/entities/types/utils";
+import { useTranslation } from "react-i18next";
 
 const useDeleteSupervisor = () => {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (id: string | number) => deleteSupervisor(id),
     onSuccess: () => {
-      toast.success("Üstünlikli pozuldy")
+      toast.success(t('successfullyDeleted'))
       queryClient.invalidateQueries({
         queryKey: ['supervisors']
       })
@@ -22,7 +24,7 @@ const useDeleteSupervisor = () => {
           toast.error(err.data.message)
       }
       else
-        toast.error('Bir zat nädogry boldy')
+        toast.error(t('somethingWentWrong'))
     }
   });
 }

@@ -116,7 +116,7 @@ function SupervisorCreateModal(props: SupervisorCreateModalProps) {
               ]}
             >
               <Select
-                options={roles?.data.map(role => ({
+                options={roles?.map(role => ({
                   label: role.name,
                   value: role.uuid,
                 }))}

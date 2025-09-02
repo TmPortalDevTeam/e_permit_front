@@ -7,8 +7,10 @@ import {
 import Table, { type ColumnsType } from "antd/es/table";
 import { useState } from "react";
 import { useDeleteSupervisor } from "@/features/supervisors";
+import { useConfirmAction } from "@/shared/lib/hooks";
 
 function SupervisorsTable() {
+  const confirmAction = useConfirmAction();
   // filters
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(perPageLimit);
@@ -51,7 +53,7 @@ function SupervisorsTable() {
         <Space size={5}>
           <Button
             onClick={() =>
-              deleteSupervisor?.(record.uuid)
+              confirmAction(() => deleteSupervisor?.(record.uuid))
             }
             shape="circle"
             loading={deletingSupervisor}

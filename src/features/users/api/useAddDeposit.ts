@@ -4,12 +4,14 @@ import toast from "react-hot-toast";
 import type { ErrorResponseType } from "@/entities/types";
 import type { AddDepositDto } from "@/entities/users";
 import { addDeposit } from ".";
+import { useTranslation } from "react-i18next";
 
 const useAddDeposit = () => {
+  const { t } = useTranslation();
   return useMutation({
     mutationFn: (dto: AddDepositDto) => addDeposit(dto),
     onSuccess: () => {
-      toast.success('Üstünlikli goşuldy')
+      toast.success(t('successfullyCreated'))
     },
     onError: (err: { data: ErrorResponseType }) => {
       if (isErrorResponseType(err.data)) {
@@ -19,7 +21,7 @@ const useAddDeposit = () => {
           toast.error(err.data.message)
       }
       else
-        toast.error('Bir zat nädogry boldy')
+        toast.error(t('somethingWentWrong'))
     }
   });
 }

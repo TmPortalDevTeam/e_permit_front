@@ -1,11 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import type { LimitPage } from "@/entities/types";
-import { getUsers } from "@/entities/users";
+import { getUsers, type UsersParams } from "@/entities/users";
 
-const useGetUsers = (dto: LimitPage) => {
+const useGetUsers = (dto: UsersParams) => {
   return useQuery({
     queryFn: () => getUsers(dto),
-    queryKey: ['users', dto.page, dto.perPage],
+    queryKey: ['users', dto.page, dto.perPage, dto.text],
   })
 }
 

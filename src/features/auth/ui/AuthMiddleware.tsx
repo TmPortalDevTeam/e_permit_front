@@ -24,14 +24,14 @@ function AuthMiddleware(props: AuthMiddlewareProps) {
     const handler = async () => {
       try {
         const userData = await getMe();
-        if (!userData?.uuid) {
+        if (!userData?.data?.uuid) {
           navigate({ to: "/login", replace: true });
           return;
         }
-        setUserRole(userData.role)
+        setUserRole(userData?.data.role)
         const userFromLocalStore = storage.getItem(storeKeys.userData);
         if (isUser(userFromLocalStore)) { // update users role in local storage
-          storage.setItem(storeKeys.userData, { ...userFromLocalStore, role: userData.role })
+          storage.setItem(storeKeys.userData, { ...userFromLocalStore, role: userData?.data.role })
         }
       } catch (error) {
         navigate({ to: "/login", replace: true });

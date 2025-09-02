@@ -4,13 +4,15 @@ import type { SupervisorCreateDto } from "@/entities/supervisors";
 import { isErrorResponseType } from "@/entities/types/utils";
 import toast from "react-hot-toast";
 import type { ErrorResponseType } from "@/entities/types";
+import { useTranslation } from "react-i18next";
 
 const useCreateSupervisor = () => {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (dto: SupervisorCreateDto) => createSupervisor(dto),
     onSuccess: () => {
-      toast.success('Üstünlikli döredildi')
+      toast.success(t('successfullyCreated'))
       queryClient.invalidateQueries({
         queryKey: ['supervisors']
       })
@@ -23,7 +25,7 @@ const useCreateSupervisor = () => {
           toast.error(err.data.message)
       }
       else
-        toast.error('Bir zat nädogry boldy')
+        toast.error(t('somethingWentWrong'))
     }
   });
 }

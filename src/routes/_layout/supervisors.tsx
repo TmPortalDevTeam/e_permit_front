@@ -5,12 +5,14 @@ import { PlusOutlined } from "@ant-design/icons";
 import { useState } from 'react';
 import { AuthMiddleware } from '@/features/auth';
 import { roles } from '@/shared/constants';
+import { useTranslation } from 'react-i18next';
 
 export const Route = createFileRoute('/_layout/supervisors')({
   component: Supervisors,
 })
 
 function Supervisors() {
+  const { t } = useTranslation();
   const [showAddSupervisorModal, setShowAddSupervisorModal] = useState(false);
 
   return (
@@ -28,7 +30,7 @@ function Supervisors() {
             icon={<PlusOutlined />}
             onClick={() => setShowAddSupervisorModal(true)}
           >
-            Gözegçi goşmak
+            {t('addSupervisor')}
           </Button>
         </Flex>
 

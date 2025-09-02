@@ -6,13 +6,13 @@ import type { RolesRes } from "./types/RolesRes";
 import reqInstance from "@/shared/api";
 
 export const getSupervisors = async (dto: SupervisorParams): Promise<Pagination<Supervisor[]>> => {
-  return (await reqInstance.get('/admins', {
+  return (await reqInstance.get('/admin', {
     params: dto
   })).data;
 }
 
-export const getRoles = async (dto: LimitPage): Promise<Pagination<RolesRes[]>> => {
-  return (await reqInstance.get('/admins/roles', {
+export const getRoles = async (dto: LimitPage): Promise<RolesRes[]> => {
+  return (await reqInstance.get('/admin/roles', {
     params: dto
   })).data;
 }
