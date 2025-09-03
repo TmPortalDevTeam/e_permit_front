@@ -1,5 +1,6 @@
 import { AuthMiddleware } from '@/features/auth'
 import { roles } from '@/shared/constants'
+import { AuthoritiesTable } from '@/widgets/authorities'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_layout/authorities')({
@@ -9,7 +10,7 @@ export const Route = createFileRoute('/_layout/authorities')({
 function Authorities() {
   return (
     <AuthMiddleware toRolesAvailable={[...roles]}>
-      <div>Hello "/_layout/authorities"!</div>
+      <AuthoritiesTable />
     </AuthMiddleware>
   )
 }

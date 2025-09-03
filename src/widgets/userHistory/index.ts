@@ -1,0 +1,3 @@
+export {
+  UserHistoryTable,
+} from './ui';

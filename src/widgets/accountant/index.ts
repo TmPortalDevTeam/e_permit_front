@@ -1,0 +1,3 @@
+export {
+  AccountantTable,
+} from './ui';

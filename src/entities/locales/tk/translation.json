@@ -1,6 +1,8 @@
 {
   "successfullyCreated": "Üstünlikli döredildi",
   "successfullyDeleted": "Üstünlikli pozuldy",
+  "successfullyApproved": "Üstünlikli tassyklandy",
+  "successfullyRejected": "Üstünlikli ýatyryldy",
   "somethingWentWrong": "Bir zat nädogry boldy",
   "addSupervisor": "Gözegçi goşmak",
   "areYouSure": "Siz hakykatdan hem saýlanan herekedi ýerine ýetirmekçimi?",
@@ -9,5 +11,18 @@
   "search": "Gözleg",
   "name": "Ady",
   "email": "E-poçta",
-  "phone": "Telefon nomer"
+  "phone": "Telefon nomer",
+  "legal": "Ýuridiki",
+  "individual": "Fiziki",
+  "carNumber": "Ulag belgi",
+  "trailerNumber": "Treýler belgi",
+  "from": "Nireden",
+  "to": "Nirä",
+  "typeOfCargo": "Ýüküň görnüşi",
+  "driverFAA": "Sürüjiniň F.A.A",
+  "paid": "Töleg edilen",
+  "notPaid": "Töleg edilmedik",
+  "newGiven": "Täze berilenler",
+  "rejected": "Ýatyrylanlar",
+  "required": "Hökmany meýdança"
 }

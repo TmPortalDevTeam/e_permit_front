@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as LayoutRouteRouteImport } from './routes/_layout/route'
 import { Route as LayoutIndexRouteImport } from './routes/_layout/index'
-import { Route as LayoutUsersRouteImport } from './routes/_layout/users'
 import { Route as LayoutSupervisorsRouteImport } from './routes/_layout/supervisors'
 import { Route as LayoutQuotasRouteImport } from './routes/_layout/quotas'
 import { Route as LayoutNotFoundRouteImport } from './routes/_layout/not-found'
@@ -22,6 +21,8 @@ import { Route as LayoutBlackHistoryRouteImport } from './routes/_layout/black-h
 import { Route as LayoutAuthoritiesRouteImport } from './routes/_layout/authorities'
 import { Route as LayoutActivePermitsRouteImport } from './routes/_layout/active-permits'
 import { Route as LayoutAccountantRouteImport } from './routes/_layout/accountant'
+import { Route as LayoutUsersIndexRouteImport } from './routes/_layout/users/index'
+import { Route as LayoutUsersUuidRouteImport } from './routes/_layout/users/$uuid'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
@@ -35,11 +36,6 @@ const LayoutRouteRoute = LayoutRouteRouteImport.update({
 const LayoutIndexRoute = LayoutIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => LayoutRouteRoute,
-} as any)
-const LayoutUsersRoute = LayoutUsersRouteImport.update({
-  id: '/users',
-  path: '/users',
   getParentRoute: () => LayoutRouteRoute,
 } as any)
 const LayoutSupervisorsRoute = LayoutSupervisorsRouteImport.update({
@@ -87,6 +83,16 @@ const LayoutAccountantRoute = LayoutAccountantRouteImport.update({
   path: '/accountant',
   getParentRoute: () => LayoutRouteRoute,
 } as any)
+const LayoutUsersIndexRoute = LayoutUsersIndexRouteImport.update({
+  id: '/users/',
+  path: '/users/',
+  getParentRoute: () => LayoutRouteRoute,
+} as any)
+const LayoutUsersUuidRoute = LayoutUsersUuidRouteImport.update({
+  id: '/users/$uuid',
+  path: '/users/$uuid',
+  getParentRoute: () => LayoutRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
@@ -99,8 +105,9 @@ export interface FileRoutesByFullPath {
   '/not-found': typeof LayoutNotFoundRoute
   '/quotas': typeof LayoutQuotasRoute
   '/supervisors': typeof LayoutSupervisorsRoute
-  '/users': typeof LayoutUsersRoute
   '/': typeof LayoutIndexRoute
+  '/users/$uuid': typeof LayoutUsersUuidRoute
+  '/users': typeof LayoutUsersIndexRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
@@ -113,8 +120,9 @@ export interface FileRoutesByTo {
   '/not-found': typeof LayoutNotFoundRoute
   '/quotas': typeof LayoutQuotasRoute
   '/supervisors': typeof LayoutSupervisorsRoute
-  '/users': typeof LayoutUsersRoute
   '/': typeof LayoutIndexRoute
+  '/users/$uuid': typeof LayoutUsersUuidRoute
+  '/users': typeof LayoutUsersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -129,8 +137,9 @@ export interface FileRoutesById {
   '/_layout/not-found': typeof LayoutNotFoundRoute
   '/_layout/quotas': typeof LayoutQuotasRoute
   '/_layout/supervisors': typeof LayoutSupervisorsRoute
-  '/_layout/users': typeof LayoutUsersRoute
   '/_layout/': typeof LayoutIndexRoute
+  '/_layout/users/$uuid': typeof LayoutUsersUuidRoute
+  '/_layout/users/': typeof LayoutUsersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -145,8 +154,9 @@ export interface FileRouteTypes {
     | '/not-found'
     | '/quotas'
     | '/supervisors'
-    | '/users'
     | '/'
+    | '/users/$uuid'
+    | '/users'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/login'
@@ -159,8 +169,9 @@ export interface FileRouteTypes {
     | '/not-found'
     | '/quotas'
     | '/supervisors'
-    | '/users'
     | '/'
+    | '/users/$uuid'
+    | '/users'
   id:
     | '__root__'
     | '/_layout'
@@ -174,8 +185,9 @@ export interface FileRouteTypes {
     | '/_layout/not-found'
     | '/_layout/quotas'
     | '/_layout/supervisors'
-    | '/_layout/users'
     | '/_layout/'
+    | '/_layout/users/$uuid'
+    | '/_layout/users/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -204,13 +216,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof LayoutIndexRouteImport
-      parentRoute: typeof LayoutRouteRoute
-    }
-    '/_layout/users': {
-      id: '/_layout/users'
-      path: '/users'
-      fullPath: '/users'
-      preLoaderRoute: typeof LayoutUsersRouteImport
       parentRoute: typeof LayoutRouteRoute
     }
     '/_layout/supervisors': {
@@ -276,6 +281,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutAccountantRouteImport
       parentRoute: typeof LayoutRouteRoute
     }
+    '/_layout/users/': {
+      id: '/_layout/users/'
+      path: '/users'
+      fullPath: '/users'
+      preLoaderRoute: typeof LayoutUsersIndexRouteImport
+      parentRoute: typeof LayoutRouteRoute
+    }
+    '/_layout/users/$uuid': {
+      id: '/_layout/users/$uuid'
+      path: '/users/$uuid'
+      fullPath: '/users/$uuid'
+      preLoaderRoute: typeof LayoutUsersUuidRouteImport
+      parentRoute: typeof LayoutRouteRoute
+    }
   }
 }
 
@@ -289,8 +308,9 @@ interface LayoutRouteRouteChildren {
   LayoutNotFoundRoute: typeof LayoutNotFoundRoute
   LayoutQuotasRoute: typeof LayoutQuotasRoute
   LayoutSupervisorsRoute: typeof LayoutSupervisorsRoute
-  LayoutUsersRoute: typeof LayoutUsersRoute
   LayoutIndexRoute: typeof LayoutIndexRoute
+  LayoutUsersUuidRoute: typeof LayoutUsersUuidRoute
+  LayoutUsersIndexRoute: typeof LayoutUsersIndexRoute
 }
 
 const LayoutRouteRouteChildren: LayoutRouteRouteChildren = {
@@ -303,8 +323,9 @@ const LayoutRouteRouteChildren: LayoutRouteRouteChildren = {
   LayoutNotFoundRoute: LayoutNotFoundRoute,
   LayoutQuotasRoute: LayoutQuotasRoute,
   LayoutSupervisorsRoute: LayoutSupervisorsRoute,
-  LayoutUsersRoute: LayoutUsersRoute,
   LayoutIndexRoute: LayoutIndexRoute,
+  LayoutUsersUuidRoute: LayoutUsersUuidRoute,
+  LayoutUsersIndexRoute: LayoutUsersIndexRoute,
 }
 
 const LayoutRouteRouteWithChildren = LayoutRouteRoute._addFileChildren(
