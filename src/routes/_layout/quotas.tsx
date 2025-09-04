@@ -1,5 +1,6 @@
 import { AuthMiddleware } from '@/features/auth'
 import { roles } from '@/shared/constants'
+import { QuotasTable } from '@/widgets/quotas'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_layout/quotas')({
@@ -9,7 +10,7 @@ export const Route = createFileRoute('/_layout/quotas')({
 function Quotas() {
   return (
     <AuthMiddleware toRolesAvailable={[...roles]}>
-      <div>Hello "/_layout/quotas"!</div>
+      <QuotasTable />
     </AuthMiddleware>
   )
 }

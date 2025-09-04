@@ -24,5 +24,13 @@
   "notPaid": "Töleg edilmedik",
   "newGiven": "Täze berilenler",
   "rejected": "Ýatyrylanlar",
-  "required": "Hökmany meýdança"
+  "required": "Hökmany meýdança",
+  "requiredNumber": "Hökmany san bolmaly",
+  "permit_issued_for": "Rugsat berilen ýurt",
+  "permit_issuer": "Rugsat beren ýurt",
+  "permit_year": "Ýyly",
+  "permit_type": "Görnüşi",
+  "total_quota": "Umumy kwota sany",
+  "remainder": "Galan kwota sany",
+  "addQuota": "Kwota goşmak"
 }
