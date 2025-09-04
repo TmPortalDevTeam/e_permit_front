@@ -1,5 +1,6 @@
 import { AuthMiddleware } from '@/features/auth'
 import { roles } from '@/shared/constants'
+import { BlackHistoryTable } from '@/widgets/blackHistory'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_layout/black-history')({
@@ -9,7 +10,7 @@ export const Route = createFileRoute('/_layout/black-history')({
 function BlackHistory() {
   return (
     <AuthMiddleware toRolesAvailable={[...roles]}>
-      <div>Hello "/_layout/black-history"!</div>
+      <BlackHistoryTable />
     </AuthMiddleware>
   )
 }

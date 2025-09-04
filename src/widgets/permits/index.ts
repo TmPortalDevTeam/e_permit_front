@@ -1,0 +1,1 @@
+export { QuotasTable } from './ui';

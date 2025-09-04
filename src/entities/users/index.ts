@@ -5,4 +5,6 @@ export type { UsersRes } from './api/types/UsersRes';
 export type { AddDepositDto } from './api/types/AddDepositDto';
 export type { UsersParams } from './api/types/UsersParams';
 export type { UserHistoryRes } from './api/types/UserHistory';
+export type { BlackHistoryGetDto } from './api/types/BlackHistoryGetDto';
+export type { BlackHistory } from './api/types/BlackHistory';
 export { getUsers, getBlackHistory, getUserHistory } from './api';

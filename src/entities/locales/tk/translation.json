@@ -32,5 +32,16 @@
   "permit_type": "Görnüşi",
   "total_quota": "Umumy kwota sany",
   "remainder": "Galan kwota sany",
-  "addQuota": "Kwota goşmak"
+  "addQuota": "Kwota goşmak",
+  "arrival_country": "Gelýän ýurt",
+  "company_name": "Kompaniýanyň ady",
+  "departure_country": "Ugraýan ýurt",
+  "expires_at": "Möhleti gutarýan wagty",
+  "issued_at": "Berilen wagty",
+  "issued_for": "Kim üçin berlen",
+  "issuer": "Beriji",
+  "permit_id": "Rugsadyň ID-si",
+  "plate_number": "Nomer belgisi",
+  "revoked": "Ýatyryldy",
+  "moved_at": "Geçirilen wagty"
 }
