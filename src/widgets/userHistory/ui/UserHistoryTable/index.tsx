@@ -1,43 +1,40 @@
-import { Flex, Input } from "antd";
-import Table, { type ColumnsType } from "antd/es/table";
-import { useState } from "react";
-import { useGetUserHistory, useGetUsers, type UserHistoryRes, type UsersRes } from "@/entities/users";
-import { useTranslation } from "react-i18next";
-import { perPageLimit } from "@/shared/constants";
-import { useDebounce } from "@/shared/lib";
+import { Flex } from "antd";
+// import  { type ColumnsType } from "antd/es/table";
+// import { useState } from "react";
+import { useGetUserHistory } from "@/entities/users";
+// import { useTranslation } from "react-i18next";
 
 function UserHistoryTable() {
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
 
   // query
   const {
     data: userHistory,
-    isLoading: userHistoryLoading,
   } = useGetUserHistory();
   console.log(userHistory)
-  const tableColumns: ColumnsType<UserHistoryRes[]> = [
-    {
-      title: '№',
-      dataIndex: 'uuid',
-      key: 'uuid',
-      render: (_, __, index) => <>{index + 1}</>
-    },
-    {
-      title: t('name'),
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: t('email'),
-      dataIndex: 'email',
-      key: 'email',
-    },
-    {
-      title: t('phone'),
-      dataIndex: 'phone',
-      key: 'phone',
-    },
-  ];
+  // const tableColumns: ColumnsType<UserHistoryRes[]> = [
+  //   {
+  //     title: '№',
+  //     dataIndex: 'uuid',
+  //     key: 'uuid',
+  //     render: (_, __, index) => <>{index + 1}</>
+  //   },
+  //   {
+  //     title: t('name'),
+  //     dataIndex: 'name',
+  //     key: 'name',
+  //   },
+  //   {
+  //     title: t('email'),
+  //     dataIndex: 'email',
+  //     key: 'email',
+  //   },
+  //   {
+  //     title: t('phone'),
+  //     dataIndex: 'phone',
+  //     key: 'phone',
+  //   },
+  // ];
 
   return (
     <Flex gap={10} vertical>
