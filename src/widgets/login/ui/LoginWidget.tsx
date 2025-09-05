@@ -15,7 +15,7 @@ function LoginWidget() {
 
   return (
     <Flex vertical align='center' style={{ marginTop: 50 }}>
-      <img src='/logo_text.svg' height={100} />
+      <img src='/admin/logo_text.svg' height={100} />
       <Typography.Title level={3}>
         Içeri girmek
       </Typography.Title>
