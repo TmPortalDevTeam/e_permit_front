@@ -1,69 +1,57 @@
 import { Flex } from "antd";
-// import  { type ColumnsType } from "antd/es/table";
-// import { useState } from "react";
-import { useGetUserHistory } from "@/entities/users";
-// import { useTranslation } from "react-i18next";
+import Table, { type ColumnsType } from "antd/es/table";
+import { useGetUserHistory, type UserHistoryRes } from "@/entities/users";
+import { useTranslation } from "react-i18next";
+import dayjs from "dayjs";
 
 function UserHistoryTable() {
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
 
   // query
   const {
     data: userHistory,
+    isLoading: userHistoryLoading
   } = useGetUserHistory();
   console.log(userHistory)
-  // const tableColumns: ColumnsType<UserHistoryRes[]> = [
-  //   {
-  //     title: '№',
-  //     dataIndex: 'uuid',
-  //     key: 'uuid',
-  //     render: (_, __, index) => <>{index + 1}</>
-  //   },
-  //   {
-  //     title: t('name'),
-  //     dataIndex: 'name',
-  //     key: 'name',
-  //   },
-  //   {
-  //     title: t('email'),
-  //     dataIndex: 'email',
-  //     key: 'email',
-  //   },
-  //   {
-  //     title: t('phone'),
-  //     dataIndex: 'phone',
-  //     key: 'phone',
-  //   },
-  // ];
+  const tableColumns: ColumnsType<UserHistoryRes> = [
+    {
+      title: '№',
+      dataIndex: 'uuid',
+      key: 'uuid',
+      render: (_, __, index) => <>{index + 1}</>
+    },
+    {
+      title: t('name'),
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: t('company_name'),
+      dataIndex: 'company_name',
+      key: 'company_name',
+    },
+    {
+      title: t('permit_id'),
+      dataIndex: 'permit_id',
+      key: 'permit_id',
+    },
+    {
+      title: t('date'),
+      dataIndex: 'date',
+      key: 'date',
+      render: (_, record) => dayjs(record.date).format('DD.MM.YYYY HH:mm')
+    },
+  ];
 
   return (
     <Flex gap={10} vertical>
-      <Flex justify='end'>
-        {/* <Input
-          style={{ maxWidth: 300 }}
-          placeholder={`${t('search')}...`}
-          value={searchValue}
-          onChange={({ currentTarget: { value } }) => setSearchValue(value)}
-        /> */}
-      </Flex>
-
-      {/* <Table
+      <h2>{t('userHistory')}</h2>
+      <Table
         columns={tableColumns}
-        rowKey={(record) => record.uuid}
-        dataSource={userHistory?.data.userHistory}
+        rowKey={(record) => record.permit_id}
+        dataSource={userHistory?.data}
         loading={userHistoryLoading}
-        pagination={{
-          defaultPageSize: limit,
-          position: ["bottomRight"],
-          pageSizeOptions: ["25", "50"],
-          showSizeChanger: true,
-          onChange: (page, pageSize) => {
-            setPage(page);
-            setLimit(pageSize);
-          },
-          total: userHistory?.data.count || 0,
-        }}
-      /> */}
+      />
     </Flex>
   )
 }

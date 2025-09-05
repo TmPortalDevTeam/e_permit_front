@@ -44,7 +44,7 @@ function Layout(props: LayoutProps) {
             <div className={styles.head__logo}>
               {collapsed ? (
                 <img
-                  src='/logo.svg'
+                  src='/admin/logo.svg'
                   alt="Logo"
                   className={styles.head__logoImg}
                 />

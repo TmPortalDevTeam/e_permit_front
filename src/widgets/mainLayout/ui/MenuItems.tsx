@@ -23,57 +23,57 @@ function MenuItems() {
       selectedKeys={[location.pathname]}
       items={[
         {
-          key: "/",
+          key: "/admin/",
           icon: <AppstoreOutlined />,
           label: <Link to="/">Baş sahypa</Link>,
         },
         {
-          key: "/supervisors",
+          key: "/admin/supervisors",
           icon: <SecurityScanOutlined />,
           label: <Link to="/supervisors">Gözegçiler</Link>,
         },
         {
-          key: "/users",
+          key: "/admin/users",
           icon: <UserOutlined />,
           label: <Link to="/users">Ullanyjylar</Link>,
         },
         {
-          key: "/checkmarks",
+          key: "/admin/checkmarks",
           icon: <SelectOutlined />,
           label: <Link to="/checkmarks">Merkezi gözegçi</Link>,
         },
         {
-          key: "/accountant",
+          key: "/admin/accountant",
           icon: <DollarOutlined />,
           label: <Link to="/accountant">Buhgalter</Link>,
         },
         {
-          key: "/dazwol",
+          key: "/admin/dazwol",
           icon: <PaperClipOutlined />,
           label: <span>Dazwol</span>,
           children: [
             {
-              key: "/authorities",
+              key: "/admin/authorities",
               icon: <SnippetsOutlined />,
               label: <Link to="/authorities">Authorities</Link>,
             },
             {
-              key: "/quotas",
+              key: "/admin/quotas",
               icon: <BookOutlined />,
               label: <Link to="/quotas">Quotas</Link>,
             },
             {
-              key: "/e-permit",
+              key: "/admin/e-permit",
               icon: <ContainerOutlined />,
               label: <Link to="/e-permit">E-permit</Link>,
             },
             {
-              key: "/active-permits",
+              key: "/admin/active-permits",
               icon: <FieldTimeOutlined />,
               label: <Link to="/active-permits">Active-permits</Link>,
             },
             {
-              key: "/black-history",
+              key: "/admin/black-history",
               icon: <StopOutlined />,
               label: <Link to="/black-history">Black-history</Link>,
             },

@@ -43,5 +43,7 @@
   "permit_id": "Rugsadyň ID-si",
   "plate_number": "Nomer belgisi",
   "revoked": "Ýatyryldy",
-  "moved_at": "Geçirilen wagty"
+  "moved_at": "Geçirilen wagty",
+  "date": "Sene",
+  "userHistory": "Ullanyjy taryhy"
 }
