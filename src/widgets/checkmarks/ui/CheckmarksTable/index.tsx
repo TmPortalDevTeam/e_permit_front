@@ -5,9 +5,11 @@ import { useDebounce } from "@/shared/lib/hooks";
 import { useGetEPermits, type EPermit } from "@/entities/e-permit";
 import { useTranslation } from "react-i18next";
 import Table, { type ColumnsType } from "antd/es/table";
+import { useNavigate } from "@tanstack/react-router";
 
 function CheckmarksTable() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   // filters
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(perPageLimit);
@@ -32,6 +34,12 @@ function CheckmarksTable() {
       dataIndex: 'id',
       key: 'id',
       render: (_, __, index) => <>{(page - 1) * limit + index + 1}</>
+    },
+    {
+      title: "Fiziki/Ýuridiki",
+      dataIndex: 'is_legal',
+      key: 'is_legal',
+      render: (_, record) => record.is_legal ? "Ýuridiki" : "Fiziki"
     },
     {
       title: t('name'),
@@ -74,11 +82,11 @@ function CheckmarksTable() {
       render: (_, record) => `${record.driver?.[0].name} ${record.driver?.[0].surname} ${record.driver?.[0].patronymic}`
     },
     {
-      title: t('driverFAA'),
+      title: t('paid'),
       dataIndex: 'is_paid',
       key: 'is_paid',
       render: (_, record) => (
-        <Tag color={record.is_paid ? 'red' : 'green'}>
+        <Tag color={record.is_paid ? 'green' : 'red'}>
           {
             record.is_paid ?
               t('paid')
@@ -125,6 +133,12 @@ function CheckmarksTable() {
           },
           total: ePermits?.data.count || 0,
         }}
+        onRow={(record) => {
+          return {
+            onClick: () => navigate({ to: `/checkmarks/${record.uuid}` }),
+          };
+        }}
+        rowClassName='cursor-pointer'
       />
     </Flex>
   )

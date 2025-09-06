@@ -16,13 +16,14 @@ import { Route as LayoutSupervisorsRouteImport } from './routes/_layout/supervis
 import { Route as LayoutQuotasRouteImport } from './routes/_layout/quotas'
 import { Route as LayoutNotFoundRouteImport } from './routes/_layout/not-found'
 import { Route as LayoutEPermitRouteImport } from './routes/_layout/e-permit'
-import { Route as LayoutCheckmarksRouteImport } from './routes/_layout/checkmarks'
 import { Route as LayoutBlackHistoryRouteImport } from './routes/_layout/black-history'
 import { Route as LayoutAuthoritiesRouteImport } from './routes/_layout/authorities'
 import { Route as LayoutActivePermitsRouteImport } from './routes/_layout/active-permits'
 import { Route as LayoutAccountantRouteImport } from './routes/_layout/accountant'
 import { Route as LayoutUsersIndexRouteImport } from './routes/_layout/users/index'
+import { Route as LayoutCheckmarksIndexRouteImport } from './routes/_layout/checkmarks/index'
 import { Route as LayoutUsersUuidRouteImport } from './routes/_layout/users/$uuid'
+import { Route as LayoutCheckmarksUuidRouteImport } from './routes/_layout/checkmarks/$uuid'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
@@ -58,11 +59,6 @@ const LayoutEPermitRoute = LayoutEPermitRouteImport.update({
   path: '/e-permit',
   getParentRoute: () => LayoutRouteRoute,
 } as any)
-const LayoutCheckmarksRoute = LayoutCheckmarksRouteImport.update({
-  id: '/checkmarks',
-  path: '/checkmarks',
-  getParentRoute: () => LayoutRouteRoute,
-} as any)
 const LayoutBlackHistoryRoute = LayoutBlackHistoryRouteImport.update({
   id: '/black-history',
   path: '/black-history',
@@ -88,9 +84,19 @@ const LayoutUsersIndexRoute = LayoutUsersIndexRouteImport.update({
   path: '/users/',
   getParentRoute: () => LayoutRouteRoute,
 } as any)
+const LayoutCheckmarksIndexRoute = LayoutCheckmarksIndexRouteImport.update({
+  id: '/checkmarks/',
+  path: '/checkmarks/',
+  getParentRoute: () => LayoutRouteRoute,
+} as any)
 const LayoutUsersUuidRoute = LayoutUsersUuidRouteImport.update({
   id: '/users/$uuid',
   path: '/users/$uuid',
+  getParentRoute: () => LayoutRouteRoute,
+} as any)
+const LayoutCheckmarksUuidRoute = LayoutCheckmarksUuidRouteImport.update({
+  id: '/checkmarks/$uuid',
+  path: '/checkmarks/$uuid',
   getParentRoute: () => LayoutRouteRoute,
 } as any)
 
@@ -100,13 +106,14 @@ export interface FileRoutesByFullPath {
   '/active-permits': typeof LayoutActivePermitsRoute
   '/authorities': typeof LayoutAuthoritiesRoute
   '/black-history': typeof LayoutBlackHistoryRoute
-  '/checkmarks': typeof LayoutCheckmarksRoute
   '/e-permit': typeof LayoutEPermitRoute
   '/not-found': typeof LayoutNotFoundRoute
   '/quotas': typeof LayoutQuotasRoute
   '/supervisors': typeof LayoutSupervisorsRoute
   '/': typeof LayoutIndexRoute
+  '/checkmarks/$uuid': typeof LayoutCheckmarksUuidRoute
   '/users/$uuid': typeof LayoutUsersUuidRoute
+  '/checkmarks': typeof LayoutCheckmarksIndexRoute
   '/users': typeof LayoutUsersIndexRoute
 }
 export interface FileRoutesByTo {
@@ -115,13 +122,14 @@ export interface FileRoutesByTo {
   '/active-permits': typeof LayoutActivePermitsRoute
   '/authorities': typeof LayoutAuthoritiesRoute
   '/black-history': typeof LayoutBlackHistoryRoute
-  '/checkmarks': typeof LayoutCheckmarksRoute
   '/e-permit': typeof LayoutEPermitRoute
   '/not-found': typeof LayoutNotFoundRoute
   '/quotas': typeof LayoutQuotasRoute
   '/supervisors': typeof LayoutSupervisorsRoute
   '/': typeof LayoutIndexRoute
+  '/checkmarks/$uuid': typeof LayoutCheckmarksUuidRoute
   '/users/$uuid': typeof LayoutUsersUuidRoute
+  '/checkmarks': typeof LayoutCheckmarksIndexRoute
   '/users': typeof LayoutUsersIndexRoute
 }
 export interface FileRoutesById {
@@ -132,13 +140,14 @@ export interface FileRoutesById {
   '/_layout/active-permits': typeof LayoutActivePermitsRoute
   '/_layout/authorities': typeof LayoutAuthoritiesRoute
   '/_layout/black-history': typeof LayoutBlackHistoryRoute
-  '/_layout/checkmarks': typeof LayoutCheckmarksRoute
   '/_layout/e-permit': typeof LayoutEPermitRoute
   '/_layout/not-found': typeof LayoutNotFoundRoute
   '/_layout/quotas': typeof LayoutQuotasRoute
   '/_layout/supervisors': typeof LayoutSupervisorsRoute
   '/_layout/': typeof LayoutIndexRoute
+  '/_layout/checkmarks/$uuid': typeof LayoutCheckmarksUuidRoute
   '/_layout/users/$uuid': typeof LayoutUsersUuidRoute
+  '/_layout/checkmarks/': typeof LayoutCheckmarksIndexRoute
   '/_layout/users/': typeof LayoutUsersIndexRoute
 }
 export interface FileRouteTypes {
@@ -149,13 +158,14 @@ export interface FileRouteTypes {
     | '/active-permits'
     | '/authorities'
     | '/black-history'
-    | '/checkmarks'
     | '/e-permit'
     | '/not-found'
     | '/quotas'
     | '/supervisors'
     | '/'
+    | '/checkmarks/$uuid'
     | '/users/$uuid'
+    | '/checkmarks'
     | '/users'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -164,13 +174,14 @@ export interface FileRouteTypes {
     | '/active-permits'
     | '/authorities'
     | '/black-history'
-    | '/checkmarks'
     | '/e-permit'
     | '/not-found'
     | '/quotas'
     | '/supervisors'
     | '/'
+    | '/checkmarks/$uuid'
     | '/users/$uuid'
+    | '/checkmarks'
     | '/users'
   id:
     | '__root__'
@@ -180,13 +191,14 @@ export interface FileRouteTypes {
     | '/_layout/active-permits'
     | '/_layout/authorities'
     | '/_layout/black-history'
-    | '/_layout/checkmarks'
     | '/_layout/e-permit'
     | '/_layout/not-found'
     | '/_layout/quotas'
     | '/_layout/supervisors'
     | '/_layout/'
+    | '/_layout/checkmarks/$uuid'
     | '/_layout/users/$uuid'
+    | '/_layout/checkmarks/'
     | '/_layout/users/'
   fileRoutesById: FileRoutesById
 }
@@ -246,13 +258,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutEPermitRouteImport
       parentRoute: typeof LayoutRouteRoute
     }
-    '/_layout/checkmarks': {
-      id: '/_layout/checkmarks'
-      path: '/checkmarks'
-      fullPath: '/checkmarks'
-      preLoaderRoute: typeof LayoutCheckmarksRouteImport
-      parentRoute: typeof LayoutRouteRoute
-    }
     '/_layout/black-history': {
       id: '/_layout/black-history'
       path: '/black-history'
@@ -288,11 +293,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutUsersIndexRouteImport
       parentRoute: typeof LayoutRouteRoute
     }
+    '/_layout/checkmarks/': {
+      id: '/_layout/checkmarks/'
+      path: '/checkmarks'
+      fullPath: '/checkmarks'
+      preLoaderRoute: typeof LayoutCheckmarksIndexRouteImport
+      parentRoute: typeof LayoutRouteRoute
+    }
     '/_layout/users/$uuid': {
       id: '/_layout/users/$uuid'
       path: '/users/$uuid'
       fullPath: '/users/$uuid'
       preLoaderRoute: typeof LayoutUsersUuidRouteImport
+      parentRoute: typeof LayoutRouteRoute
+    }
+    '/_layout/checkmarks/$uuid': {
+      id: '/_layout/checkmarks/$uuid'
+      path: '/checkmarks/$uuid'
+      fullPath: '/checkmarks/$uuid'
+      preLoaderRoute: typeof LayoutCheckmarksUuidRouteImport
       parentRoute: typeof LayoutRouteRoute
     }
   }
@@ -303,13 +322,14 @@ interface LayoutRouteRouteChildren {
   LayoutActivePermitsRoute: typeof LayoutActivePermitsRoute
   LayoutAuthoritiesRoute: typeof LayoutAuthoritiesRoute
   LayoutBlackHistoryRoute: typeof LayoutBlackHistoryRoute
-  LayoutCheckmarksRoute: typeof LayoutCheckmarksRoute
   LayoutEPermitRoute: typeof LayoutEPermitRoute
   LayoutNotFoundRoute: typeof LayoutNotFoundRoute
   LayoutQuotasRoute: typeof LayoutQuotasRoute
   LayoutSupervisorsRoute: typeof LayoutSupervisorsRoute
   LayoutIndexRoute: typeof LayoutIndexRoute
+  LayoutCheckmarksUuidRoute: typeof LayoutCheckmarksUuidRoute
   LayoutUsersUuidRoute: typeof LayoutUsersUuidRoute
+  LayoutCheckmarksIndexRoute: typeof LayoutCheckmarksIndexRoute
   LayoutUsersIndexRoute: typeof LayoutUsersIndexRoute
 }
 
@@ -318,13 +338,14 @@ const LayoutRouteRouteChildren: LayoutRouteRouteChildren = {
   LayoutActivePermitsRoute: LayoutActivePermitsRoute,
   LayoutAuthoritiesRoute: LayoutAuthoritiesRoute,
   LayoutBlackHistoryRoute: LayoutBlackHistoryRoute,
-  LayoutCheckmarksRoute: LayoutCheckmarksRoute,
   LayoutEPermitRoute: LayoutEPermitRoute,
   LayoutNotFoundRoute: LayoutNotFoundRoute,
   LayoutQuotasRoute: LayoutQuotasRoute,
   LayoutSupervisorsRoute: LayoutSupervisorsRoute,
   LayoutIndexRoute: LayoutIndexRoute,
+  LayoutCheckmarksUuidRoute: LayoutCheckmarksUuidRoute,
   LayoutUsersUuidRoute: LayoutUsersUuidRoute,
+  LayoutCheckmarksIndexRoute: LayoutCheckmarksIndexRoute,
   LayoutUsersIndexRoute: LayoutUsersIndexRoute,
 }
 

@@ -38,12 +38,12 @@ function AuthorityCreateModal(props: AuthorityCreateModalProps) {
 
   return (
     <Modal
-      title="Gözegçi goşmak"
+      title={t('addSupervisor')}
       open={open}
       onCancel={() => setOpen(false)}
       onOk={() => form.submit()}
-      okText="Goş"
-      cancelText="Ýatyr"
+      okText={t('add')}
+      cancelText={t('cancel')}
       okButtonProps={{
         loading: creatingSupervisor
       }}

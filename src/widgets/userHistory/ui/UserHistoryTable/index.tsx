@@ -12,7 +12,7 @@ function UserHistoryTable() {
     data: userHistory,
     isLoading: userHistoryLoading
   } = useGetUserHistory();
-  console.log(userHistory)
+
   const tableColumns: ColumnsType<UserHistoryRes> = [
     {
       title: '№',

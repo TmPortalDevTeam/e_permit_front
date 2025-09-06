@@ -1,16 +1,16 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { isErrorResponseType } from "@/entities/types/utils";
 import { useTranslation } from "react-i18next";
-import { changeEPermitStatus } from "@/features/e-permit";
+import { rejectEPermit } from "@/features/e-permit";
 import type { ErrorResponseType } from "@/entities/types";
-import type { EPermitChangeStatusDto } from "@/entities/e-permit";
+import type { EPermitRejectDto } from "@/entities/e-permit";
 import toast from "react-hot-toast";
 
 const useRejectEPermit = () => {
   const { t } = useTranslation();
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (dto: EPermitChangeStatusDto) => changeEPermitStatus(dto),
+    mutationFn: (dto: EPermitRejectDto) => rejectEPermit(dto),
     onSuccess: () => {
       toast.success(t('successfullyRejected'))
       queryClient.invalidateQueries({

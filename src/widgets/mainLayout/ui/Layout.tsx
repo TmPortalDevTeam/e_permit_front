@@ -50,7 +50,7 @@ function Layout(props: LayoutProps) {
                 />
               ) : (
                 <img
-                  src='logo_text.svg'
+                  src='/admin/logo_text.svg'
                   alt="Logo"
                   className={styles.head__logoImg}
                 />
