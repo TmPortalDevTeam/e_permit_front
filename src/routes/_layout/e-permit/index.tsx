@@ -3,7 +3,7 @@ import { roles } from '@/shared/constants'
 import PermitsTable from '@/widgets/permits/ui/PermitsTable'
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/_layout/e-permit')({
+export const Route = createFileRoute('/_layout/e-permit/')({
   component: EPermit,
 })
 

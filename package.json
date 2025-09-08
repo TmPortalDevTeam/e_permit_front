@@ -16,14 +16,19 @@
     "axios": "^1.11.0",
     "dayjs": "^1.11.18",
     "i18next": "^25.3.6",
+    "pdfmake": "^0.2.20",
+    "qrcode": "^1.5.4",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-hot-toast": "^2.5.2",
-    "react-i18next": "^15.6.1"
+    "react-i18next": "^15.6.1",
+    "react-qr-code": "^2.0.18"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
     "@tanstack/router-plugin": "^1.131.11",
+    "@types/pdfmake": "^0.2.11",
+    "@types/qrcode": "^1.5.5",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "@vitejs/plugin-react": "^5.0.0",

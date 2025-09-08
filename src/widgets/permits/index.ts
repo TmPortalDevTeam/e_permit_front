@@ -1,1 +1,1 @@
-export { QuotasTable } from './ui';
+export { PermitsTable, PermitInfo } from './ui';

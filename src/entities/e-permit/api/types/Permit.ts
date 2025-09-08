@@ -15,4 +15,6 @@ export type Permit = {
   revoked: boolean
   revoked_at: number
   used: boolean
+  qr_code?: string
+  activities?: any[]
 }

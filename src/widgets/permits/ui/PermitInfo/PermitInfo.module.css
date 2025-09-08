@@ -1,0 +1,24 @@
+.wrap {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px auto;
+  max-width: 900px;
+}
+
+.logo {
+  width: 150px;
+}
+
+.title {
+  max-width: 300px;
+  text-align: center;
+  color: #000;
+}
+
+.text{
+  text-align: center;
+  color: #000;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 28px;
+}

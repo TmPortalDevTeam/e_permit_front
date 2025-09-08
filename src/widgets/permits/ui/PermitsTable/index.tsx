@@ -4,6 +4,7 @@ import { useGetPermits } from "@/entities/e-permit";
 import type { Permit } from "@/entities/e-permit/api/types/Permit";
 import { Tag } from "antd";
 import { useEffect, useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
 
 type PermitsTableProps = {
   /** @default false */
@@ -11,6 +12,7 @@ type PermitsTableProps = {
 }
 
 function PermitsTable({ isActive = false }: PermitsTableProps) {
+  const navigate = useNavigate();
   const { t } = useTranslation();
   const [localPermits, setLocalPermits] = useState<Permit[]>([]);
 
@@ -97,6 +99,12 @@ function PermitsTable({ isActive = false }: PermitsTableProps) {
       dataSource={localPermits}
       loading={permitsLoading}
       scroll={{ x: "max-content" }}
+      onRow={(record) => ({
+        onClick: () => {
+          navigate({ to: `/e-permit/${record.id}` })
+        }
+      })}
+      rowClassName="cursor-pointer"
     />
   )
 }

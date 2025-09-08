@@ -1,6 +1,6 @@
 import { AuthMiddleware } from '@/features/auth'
 import { roles } from '@/shared/constants'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, useParams } from '@tanstack/react-router'
 import { UserHistoryTable } from '@/widgets/userHistory';
 
 export const Route = createFileRoute('/_layout/users/$uuid')({
@@ -8,10 +8,11 @@ export const Route = createFileRoute('/_layout/users/$uuid')({
 })
 
 function UserHistory() {
+  const { uuid } = useParams({ from: "/_layout/users/$uuid" });
 
   return (
     <AuthMiddleware toRolesAvailable={[...roles]}>
-      <UserHistoryTable />
+      <UserHistoryTable uuid={uuid} />
     </AuthMiddleware>
   )
 }

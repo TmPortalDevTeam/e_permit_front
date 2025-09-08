@@ -12,15 +12,16 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as LayoutRouteRouteImport } from './routes/_layout/route'
 import { Route as LayoutIndexRouteImport } from './routes/_layout/index'
+import { Route as EPermitUuidRouteImport } from './routes/e-permit/$uuid'
 import { Route as LayoutSupervisorsRouteImport } from './routes/_layout/supervisors'
 import { Route as LayoutQuotasRouteImport } from './routes/_layout/quotas'
 import { Route as LayoutNotFoundRouteImport } from './routes/_layout/not-found'
-import { Route as LayoutEPermitRouteImport } from './routes/_layout/e-permit'
 import { Route as LayoutBlackHistoryRouteImport } from './routes/_layout/black-history'
 import { Route as LayoutAuthoritiesRouteImport } from './routes/_layout/authorities'
 import { Route as LayoutActivePermitsRouteImport } from './routes/_layout/active-permits'
 import { Route as LayoutAccountantRouteImport } from './routes/_layout/accountant'
 import { Route as LayoutUsersIndexRouteImport } from './routes/_layout/users/index'
+import { Route as LayoutEPermitIndexRouteImport } from './routes/_layout/e-permit/index'
 import { Route as LayoutCheckmarksIndexRouteImport } from './routes/_layout/checkmarks/index'
 import { Route as LayoutUsersUuidRouteImport } from './routes/_layout/users/$uuid'
 import { Route as LayoutCheckmarksUuidRouteImport } from './routes/_layout/checkmarks/$uuid'
@@ -39,6 +40,11 @@ const LayoutIndexRoute = LayoutIndexRouteImport.update({
   path: '/',
   getParentRoute: () => LayoutRouteRoute,
 } as any)
+const EPermitUuidRoute = EPermitUuidRouteImport.update({
+  id: '/e-permit/$uuid',
+  path: '/e-permit/$uuid',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LayoutSupervisorsRoute = LayoutSupervisorsRouteImport.update({
   id: '/supervisors',
   path: '/supervisors',
@@ -52,11 +58,6 @@ const LayoutQuotasRoute = LayoutQuotasRouteImport.update({
 const LayoutNotFoundRoute = LayoutNotFoundRouteImport.update({
   id: '/not-found',
   path: '/not-found',
-  getParentRoute: () => LayoutRouteRoute,
-} as any)
-const LayoutEPermitRoute = LayoutEPermitRouteImport.update({
-  id: '/e-permit',
-  path: '/e-permit',
   getParentRoute: () => LayoutRouteRoute,
 } as any)
 const LayoutBlackHistoryRoute = LayoutBlackHistoryRouteImport.update({
@@ -84,6 +85,11 @@ const LayoutUsersIndexRoute = LayoutUsersIndexRouteImport.update({
   path: '/users/',
   getParentRoute: () => LayoutRouteRoute,
 } as any)
+const LayoutEPermitIndexRoute = LayoutEPermitIndexRouteImport.update({
+  id: '/e-permit/',
+  path: '/e-permit/',
+  getParentRoute: () => LayoutRouteRoute,
+} as any)
 const LayoutCheckmarksIndexRoute = LayoutCheckmarksIndexRouteImport.update({
   id: '/checkmarks/',
   path: '/checkmarks/',
@@ -106,14 +112,15 @@ export interface FileRoutesByFullPath {
   '/active-permits': typeof LayoutActivePermitsRoute
   '/authorities': typeof LayoutAuthoritiesRoute
   '/black-history': typeof LayoutBlackHistoryRoute
-  '/e-permit': typeof LayoutEPermitRoute
   '/not-found': typeof LayoutNotFoundRoute
   '/quotas': typeof LayoutQuotasRoute
   '/supervisors': typeof LayoutSupervisorsRoute
+  '/e-permit/$uuid': typeof EPermitUuidRoute
   '/': typeof LayoutIndexRoute
   '/checkmarks/$uuid': typeof LayoutCheckmarksUuidRoute
   '/users/$uuid': typeof LayoutUsersUuidRoute
   '/checkmarks': typeof LayoutCheckmarksIndexRoute
+  '/e-permit': typeof LayoutEPermitIndexRoute
   '/users': typeof LayoutUsersIndexRoute
 }
 export interface FileRoutesByTo {
@@ -122,14 +129,15 @@ export interface FileRoutesByTo {
   '/active-permits': typeof LayoutActivePermitsRoute
   '/authorities': typeof LayoutAuthoritiesRoute
   '/black-history': typeof LayoutBlackHistoryRoute
-  '/e-permit': typeof LayoutEPermitRoute
   '/not-found': typeof LayoutNotFoundRoute
   '/quotas': typeof LayoutQuotasRoute
   '/supervisors': typeof LayoutSupervisorsRoute
+  '/e-permit/$uuid': typeof EPermitUuidRoute
   '/': typeof LayoutIndexRoute
   '/checkmarks/$uuid': typeof LayoutCheckmarksUuidRoute
   '/users/$uuid': typeof LayoutUsersUuidRoute
   '/checkmarks': typeof LayoutCheckmarksIndexRoute
+  '/e-permit': typeof LayoutEPermitIndexRoute
   '/users': typeof LayoutUsersIndexRoute
 }
 export interface FileRoutesById {
@@ -140,14 +148,15 @@ export interface FileRoutesById {
   '/_layout/active-permits': typeof LayoutActivePermitsRoute
   '/_layout/authorities': typeof LayoutAuthoritiesRoute
   '/_layout/black-history': typeof LayoutBlackHistoryRoute
-  '/_layout/e-permit': typeof LayoutEPermitRoute
   '/_layout/not-found': typeof LayoutNotFoundRoute
   '/_layout/quotas': typeof LayoutQuotasRoute
   '/_layout/supervisors': typeof LayoutSupervisorsRoute
+  '/e-permit/$uuid': typeof EPermitUuidRoute
   '/_layout/': typeof LayoutIndexRoute
   '/_layout/checkmarks/$uuid': typeof LayoutCheckmarksUuidRoute
   '/_layout/users/$uuid': typeof LayoutUsersUuidRoute
   '/_layout/checkmarks/': typeof LayoutCheckmarksIndexRoute
+  '/_layout/e-permit/': typeof LayoutEPermitIndexRoute
   '/_layout/users/': typeof LayoutUsersIndexRoute
 }
 export interface FileRouteTypes {
@@ -158,14 +167,15 @@ export interface FileRouteTypes {
     | '/active-permits'
     | '/authorities'
     | '/black-history'
-    | '/e-permit'
     | '/not-found'
     | '/quotas'
     | '/supervisors'
+    | '/e-permit/$uuid'
     | '/'
     | '/checkmarks/$uuid'
     | '/users/$uuid'
     | '/checkmarks'
+    | '/e-permit'
     | '/users'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -174,14 +184,15 @@ export interface FileRouteTypes {
     | '/active-permits'
     | '/authorities'
     | '/black-history'
-    | '/e-permit'
     | '/not-found'
     | '/quotas'
     | '/supervisors'
+    | '/e-permit/$uuid'
     | '/'
     | '/checkmarks/$uuid'
     | '/users/$uuid'
     | '/checkmarks'
+    | '/e-permit'
     | '/users'
   id:
     | '__root__'
@@ -191,20 +202,22 @@ export interface FileRouteTypes {
     | '/_layout/active-permits'
     | '/_layout/authorities'
     | '/_layout/black-history'
-    | '/_layout/e-permit'
     | '/_layout/not-found'
     | '/_layout/quotas'
     | '/_layout/supervisors'
+    | '/e-permit/$uuid'
     | '/_layout/'
     | '/_layout/checkmarks/$uuid'
     | '/_layout/users/$uuid'
     | '/_layout/checkmarks/'
+    | '/_layout/e-permit/'
     | '/_layout/users/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   LayoutRouteRoute: typeof LayoutRouteRouteWithChildren
   LoginRoute: typeof LoginRoute
+  EPermitUuidRoute: typeof EPermitUuidRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -230,6 +243,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutIndexRouteImport
       parentRoute: typeof LayoutRouteRoute
     }
+    '/e-permit/$uuid': {
+      id: '/e-permit/$uuid'
+      path: '/e-permit/$uuid'
+      fullPath: '/e-permit/$uuid'
+      preLoaderRoute: typeof EPermitUuidRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_layout/supervisors': {
       id: '/_layout/supervisors'
       path: '/supervisors'
@@ -249,13 +269,6 @@ declare module '@tanstack/react-router' {
       path: '/not-found'
       fullPath: '/not-found'
       preLoaderRoute: typeof LayoutNotFoundRouteImport
-      parentRoute: typeof LayoutRouteRoute
-    }
-    '/_layout/e-permit': {
-      id: '/_layout/e-permit'
-      path: '/e-permit'
-      fullPath: '/e-permit'
-      preLoaderRoute: typeof LayoutEPermitRouteImport
       parentRoute: typeof LayoutRouteRoute
     }
     '/_layout/black-history': {
@@ -293,6 +306,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutUsersIndexRouteImport
       parentRoute: typeof LayoutRouteRoute
     }
+    '/_layout/e-permit/': {
+      id: '/_layout/e-permit/'
+      path: '/e-permit'
+      fullPath: '/e-permit'
+      preLoaderRoute: typeof LayoutEPermitIndexRouteImport
+      parentRoute: typeof LayoutRouteRoute
+    }
     '/_layout/checkmarks/': {
       id: '/_layout/checkmarks/'
       path: '/checkmarks'
@@ -322,7 +342,6 @@ interface LayoutRouteRouteChildren {
   LayoutActivePermitsRoute: typeof LayoutActivePermitsRoute
   LayoutAuthoritiesRoute: typeof LayoutAuthoritiesRoute
   LayoutBlackHistoryRoute: typeof LayoutBlackHistoryRoute
-  LayoutEPermitRoute: typeof LayoutEPermitRoute
   LayoutNotFoundRoute: typeof LayoutNotFoundRoute
   LayoutQuotasRoute: typeof LayoutQuotasRoute
   LayoutSupervisorsRoute: typeof LayoutSupervisorsRoute
@@ -330,6 +349,7 @@ interface LayoutRouteRouteChildren {
   LayoutCheckmarksUuidRoute: typeof LayoutCheckmarksUuidRoute
   LayoutUsersUuidRoute: typeof LayoutUsersUuidRoute
   LayoutCheckmarksIndexRoute: typeof LayoutCheckmarksIndexRoute
+  LayoutEPermitIndexRoute: typeof LayoutEPermitIndexRoute
   LayoutUsersIndexRoute: typeof LayoutUsersIndexRoute
 }
 
@@ -338,7 +358,6 @@ const LayoutRouteRouteChildren: LayoutRouteRouteChildren = {
   LayoutActivePermitsRoute: LayoutActivePermitsRoute,
   LayoutAuthoritiesRoute: LayoutAuthoritiesRoute,
   LayoutBlackHistoryRoute: LayoutBlackHistoryRoute,
-  LayoutEPermitRoute: LayoutEPermitRoute,
   LayoutNotFoundRoute: LayoutNotFoundRoute,
   LayoutQuotasRoute: LayoutQuotasRoute,
   LayoutSupervisorsRoute: LayoutSupervisorsRoute,
@@ -346,6 +365,7 @@ const LayoutRouteRouteChildren: LayoutRouteRouteChildren = {
   LayoutCheckmarksUuidRoute: LayoutCheckmarksUuidRoute,
   LayoutUsersUuidRoute: LayoutUsersUuidRoute,
   LayoutCheckmarksIndexRoute: LayoutCheckmarksIndexRoute,
+  LayoutEPermitIndexRoute: LayoutEPermitIndexRoute,
   LayoutUsersIndexRoute: LayoutUsersIndexRoute,
 }
 
@@ -356,6 +376,7 @@ const LayoutRouteRouteWithChildren = LayoutRouteRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   LayoutRouteRoute: LayoutRouteRouteWithChildren,
   LoginRoute: LoginRoute,
+  EPermitUuidRoute: EPermitUuidRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

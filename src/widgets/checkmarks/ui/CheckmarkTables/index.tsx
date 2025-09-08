@@ -1,4 +1,4 @@
-import { useGetPermit } from "@/entities/e-permit";
+import { useGetEPermit } from "@/entities/e-permit";
 import { useChangeEPermitStatus, useRejectEPermit } from "@/features/e-permit";
 import { Loader } from "@/shared/ui";
 import { Button, Descriptions, Flex, Input, Modal } from "antd";
@@ -23,7 +23,7 @@ function CheckmarkTables(props: CheckmarkTablesProps) {
     data: permit,
     isLoading: permitLoading,
     isError: permitError,
-  } = useGetPermit(uuid);
+  } = useGetEPermit(uuid);
   // mutation
   const {
     mutate: rejectPermit,

@@ -4,14 +4,21 @@ import { useGetUserHistory, type UserHistoryRes } from "@/entities/users";
 import { useTranslation } from "react-i18next";
 import dayjs from "dayjs";
 
-function UserHistoryTable() {
+type UserHistoryTableProps ={
+  uuid: string
+}
+
+function UserHistoryTable(props: UserHistoryTableProps) {
+  const {
+    uuid
+  } = props;
   const { t } = useTranslation();
 
   // query
   const {
     data: userHistory,
     isLoading: userHistoryLoading
-  } = useGetUserHistory();
+  } = useGetUserHistory(uuid);
 
   const tableColumns: ColumnsType<UserHistoryRes> = [
     {

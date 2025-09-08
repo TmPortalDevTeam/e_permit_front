@@ -12,8 +12,8 @@ export const getUsers = async (dto: LimitPage): Promise<ResType<Pagination<Users
   })).data;
 }
 
-export const getUserHistory = async (): Promise<ResType<UserHistoryRes[]>> => {
-  return (await reqInstance.get('/admin/history')).data;
+export const getUserHistory = async (uuid: string): Promise<ResType<UserHistoryRes[]>> => {
+  return (await reqInstance.get(`/admin/history/${uuid}`)).data;
 }
 
 export const getBlackHistory = async (dto: BlackHistoryGetDto): Promise<ResType<Pagination<BlackHistory[], 'companies'>>> => {

@@ -5,6 +5,7 @@ export type { EPermitRejectDto } from './api/types/EPermitRejectDto';
 export type { Permit } from './api/types/Permit';
 export type { PermitFull } from './api/types/PermitFull';
 export { default as useGetEPermits } from './api/useGetEPermits';
+export { default as useGetEPermit } from './api/useGetEPermit';
 export { default as useGetPermits } from './api/useGetPermits';
 export { default as useGetPermit } from './api/useGetPermit';
-export { getEPermits, getPermits, getPermit } from './api';
+export { getEPermits, getEPermit, getPermits, getPermit, } from './api';

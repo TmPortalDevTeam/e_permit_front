@@ -8,3 +8,7 @@ export const changeEPermitStatus = async (dto: EPermitChangeStatusDto): Promise<
 export const rejectEPermit = async (dto: EPermitRejectDto): Promise<void> => {
   return (await reqInstance.post('/admin/e-permit-setstatus7', dto)).data;
 }
+
+export const sendPdfToEmail = async (dto: { id: string, data: FormData }): Promise<{ email: string }> => {
+  return (await reqInstance.post(`/admin/send-email/${dto.id}`, dto.data)).data
+}

@@ -2,6 +2,7 @@ import { Dropdown, Space, type MenuProps } from "antd"
 import {
   DownOutlined,
   LogoutOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
 import { LocalStorage } from "@/shared/lib";
 import { useMemo } from "react";
@@ -43,7 +44,8 @@ function ProfileLogout() {
 
   return (
     <Dropdown menu={{ items }}>
-      <Space>
+      <Space className="cursor-pointer">
+        <UserOutlined />
         {userName}
         <DownOutlined />
       </Space>
