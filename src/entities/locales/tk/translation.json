@@ -82,6 +82,8 @@
   "truckNumber": "Tirkegiň nomeri",
   "note": "Bellik",
   "emailSent": "Elektron rugsatname elektron poçta ugradyldy!",
+  "errorInTugdk": "TUGDK ýagdaý üýtgedilende näsazlyk ýüze çykdy",
+  "errorEmail": "Poçta pdf iberilende näsazlyk ýüze çykdy",
   "permitType": {
     "1": "Ikitaraplaýyn",
     "2": "Tranzit",

@@ -9,9 +9,6 @@ const useSendEmail = () => {
   const { t } = useTranslation();
   return useMutation({
     mutationFn: (dto: { id: string, data: FormData }) => sendPdfToEmail(dto),
-    onSuccess: () => {
-      toast.success(t('successfullyRejected'))
-    },
     onError: (err: { data: ErrorResponseType }) => {
       if (isErrorResponseType(err.data)) {
         if (Array.isArray(err.data.message))

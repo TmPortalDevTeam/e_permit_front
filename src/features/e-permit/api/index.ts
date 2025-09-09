@@ -9,6 +9,11 @@ export const rejectEPermit = async (dto: EPermitRejectDto): Promise<void> => {
   return (await reqInstance.post('/admin/e-permit-setstatus7', dto)).data;
 }
 
-export const sendPdfToEmail = async (dto: { id: string, data: FormData }): Promise<{ email: string }> => {
+export const sendPdfToEmail = async (dto: { id: string, data: FormData }): Promise<{
+  type: "tugdk" | "email"
+  data: null | any
+  isError: boolean
+  email?: string
+}[]> => {
   return (await reqInstance.post(`/admin/send-email/${dto.id}`, dto.data)).data
 }

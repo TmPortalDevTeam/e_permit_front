@@ -8,6 +8,7 @@ import QRCode from "react-qr-code";
 import QRCodeL from 'qrcode';
 import LogoImg from '@/assets/logo.png';
 import SuccessSvg from '@/assets/success.svg';
+import FailedSvg from '@/assets/cross.svg';
 import { useSendEmail } from "@/features/e-permit";
 import { Loader } from "@/shared/ui";
 import { useTranslation } from "react-i18next";
@@ -105,18 +106,16 @@ function PermitInfo(props: PermitInfoProps) {
         font: 'Roboto',
       },
     }
-
+    // @ts-ignore
     pdfMake.createPdf(docDefinition).getBlob(async (blob: Blob) => {
       const formData = new FormData()
       formData.append('file', blob, 'document.pdf')
-
-      const { email } = await sendPdfToEmailAsync({
+      const [first, second] = await sendPdfToEmailAsync({
         data: formData,
         id: uuid,
-      })
-
-      setSentEmail(email);
-
+      },)
+      if (!first.isError && !second.isError)
+        setSentEmail(first.email || second.email);
     })
   }
 
@@ -135,6 +134,11 @@ function PermitInfo(props: PermitInfoProps) {
     { id: 12, label: "ARRIVAL COUNTRY", value: permit?.data.arrival_country },
     { id: 13, label: "", value: permit?.data.revoked_at },
   ];
+
+  const handleClose = () => {
+    setShowModal(false);
+    setSentEmail('');
+  }
 
   return (
     <>
@@ -222,8 +226,14 @@ function PermitInfo(props: PermitInfoProps) {
       <Modal
         open={showModal}
         maskClosable={false}
-        closeIcon={<></>}
-
+        closable={false}
+        onCancel={handleClose}
+        footer={[
+          isSentPdfToEmail ?
+            <Button key="submit" type="primary" onClick={handleClose}>
+              Ok
+            </Button> : null
+        ]}
       >
         {
           sendingPdfToEmail &&
@@ -232,12 +242,19 @@ function PermitInfo(props: PermitInfoProps) {
           </Flex>
         }
         {
-          isSentPdfToEmail &&
-          <Flex vertical>
-            <SuccessSvg />
-            <h3>{t('emailSent')}</h3>
-            <h4>{sentEmail}</h4>
-          </Flex>
+          sentEmail && isSentPdfToEmail ?
+            <Flex vertical align="center">
+              <img src={SuccessSvg} width={50} />
+              <h3>{t('emailSent')}</h3>
+              <h4>{sentEmail}</h4>
+            </Flex>
+            :
+            !sendingPdfToEmail &&
+            <Flex vertical align="center">
+              <img src={FailedSvg} width={50} />
+              <h3 style={{ color: '#FF4D4F', marginBottom: 10 }}>{t('errorInTugdk')}</h3>
+              <h3 style={{ color: '#FF4D4F', marginTop: 0 }}>{t('errorEmail')}</h3>
+            </Flex>
         }
 
       </Modal>
