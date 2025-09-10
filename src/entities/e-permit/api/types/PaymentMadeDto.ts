@@ -1,6 +1,5 @@
 export type PaymentMadeDto = {
   file: File
-  permit_id: string
   amount: number
   type: "accountant"
   pay_date: string

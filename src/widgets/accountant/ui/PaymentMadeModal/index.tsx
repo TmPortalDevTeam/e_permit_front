@@ -36,29 +36,8 @@ function PaymentMadeModal(props: PaymentMadeModalProps) {
     const companyNameOrUserName = data?.is_legal
       ? data?.client_legal?.[0]?.company_name
       : `${data?.auth_name}`
-    console.log({
-      file: values.file,
-      permit_id: values.permit_id,
-      amount: values.amount,
-      type: values.type,
-      pay_date: values.pay_date.format('YYYY-MM-DD'),
-      document_number: values.document_number,
-
-      issued_for: data.issued_for,
-      permit_type: data.permit_type,
-      permit_year: dayjs().year(),
-      plate_number: data.transport[0].plate_number[0],
-      company_name: companyNameOrUserName,
-      company_id: data.uuid,
-      departure_country: values.departure_country,
-      arrival_country: data.country,
-
-      permitId: data.uuid,
-      status: 4,
-    })
     paymentMade({
       file: values.file,
-      permit_id: values.permit_id,
       amount: values.amount,
       type: values.type,
       pay_date: values.pay_date.format('YYYY-MM-DD'),
@@ -75,29 +54,6 @@ function PaymentMadeModal(props: PaymentMadeModalProps) {
 
       permitId: data.uuid,
       status: 4,
-
-
-
-
-
-      // issued_for: data.issued_for,
-      // permit_type: data.permit_type,
-      // permit_year: dayjs().year(),
-      // plate_number: data.transport[0].plate_number[0],
-      // company_name: companyNameOrUserName,
-      // company_id: data.uuid,
-      // arrival_country: data.country,
-      // status: 4,
-
-
-      // amount: values.amount,
-      // departure_country: values.departure_country,
-      // document_number: values.document_number,
-      // file: values.file,
-      // pay_date: values.pay_date.format('YYYY-MM-DD'),
-      // permit_id: values.permit_id,
-      // permitId: values.permitId,
-      // type: values.type,
     }, {
       onSuccess: () => {
         onCancel?.();
@@ -133,16 +89,6 @@ function PaymentMadeModal(props: PaymentMadeModalProps) {
               <Upload style={{ width: '100%' }} maxCount={1}>
                 <Button icon={<UploadOutlined />} block>Upload</Button>
               </Upload>
-            </Form.Item>
-          </Col>
-          <Col span={24}>
-            <Form.Item<PaymentMadeDto>
-              name='permit_id'
-              label="Permit id"
-              className='formItemMargin'
-              rules={[{ required: true, message: t('required') }]}
-            >
-              <Input />
             </Form.Item>
           </Col>
           <Col span={24}>
