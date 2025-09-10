@@ -65,7 +65,7 @@ function PaymentMadeModal(props: PaymentMadeModalProps) {
     <Modal
       open={open}
       onCancel={onCancel}
-      title="Gözegçi goşmak"
+      title={t('paymentMade')}
       onOk={() => form.submit()}
       okText="Goş"
       cancelText="Ýatyr"
@@ -81,8 +81,8 @@ function PaymentMadeModal(props: PaymentMadeModalProps) {
         <Row gutter={10}>
           <Col span={24}>
             <Form.Item<PaymentMadeDto>
-              name='file'
-              label="File"
+              name="file"
+              label={t('file')}
               className='formItemMargin'
               rules={[{ required: true, message: t('required') }]}
             >
@@ -94,7 +94,7 @@ function PaymentMadeModal(props: PaymentMadeModalProps) {
           <Col span={24}>
             <Form.Item<PaymentMadeDto>
               name='amount'
-              label="Amount"
+              label={t('amount')}
               className='formItemMargin'
               rules={[{ required: true, message: t('required') }]}
             >
@@ -104,7 +104,7 @@ function PaymentMadeModal(props: PaymentMadeModalProps) {
           <Col span={24}>
             <Form.Item<PaymentMadeDto>
               name='document_number'
-              label="Document number"
+              label={t('document_number')}
               className='formItemMargin'
               rules={[{ required: true, message: t('required') }]}
             >
@@ -114,7 +114,7 @@ function PaymentMadeModal(props: PaymentMadeModalProps) {
           <Col span={24}>
             <Form.Item<PaymentMadeDto>
               name='departure_country'
-              label="Departure country"
+              label={t('departure_country')}
               className='formItemMargin'
               rules={[{ required: true, message: t('required') }]}
             >
@@ -124,7 +124,7 @@ function PaymentMadeModal(props: PaymentMadeModalProps) {
           <Col span={24}>
             <Form.Item<PaymentMadeDto>
               name='pay_date'
-              label="Pay date"
+              label={t('pay_date')}
               className='formItemMargin'
               rules={[{ required: true, message: t('required') }]}
             >
@@ -134,7 +134,7 @@ function PaymentMadeModal(props: PaymentMadeModalProps) {
           <Col span={24}>
             <Form.Item<PaymentMadeDto>
               name='type'
-              label="Payment type"
+              label={t('payment_type')}
               className='formItemMargin'
               rules={[{ required: true, message: t('required') }]}
             >
@@ -142,21 +142,6 @@ function PaymentMadeModal(props: PaymentMadeModalProps) {
                 options={paymentType.map(paymentType => ({
                   label: paymentType,
                   value: paymentType
-                }))}
-              />
-            </Form.Item>
-          </Col>
-          <Col span={24}>
-            <Form.Item<PaymentMadeDto>
-              name='permit_type'
-              label="Permit type"
-              className='formItemMargin'
-              rules={[{ required: true, message: t('required') }]}
-            >
-              <Select
-                options={permitTypes.map((permitType, index) => ({
-                  label: permitType,
-                  value: index + 1
                 }))}
               />
             </Form.Item>

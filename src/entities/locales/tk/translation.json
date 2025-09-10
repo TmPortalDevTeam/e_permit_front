@@ -87,6 +87,11 @@
   "errorEmail": "Poçta pdf iberilende näsazlyk ýüze çykdy",
   "actions": "Hereketler",
   "paymentMade": "Töleg edildi",
+  "file": "Faýl",
+  "amount": "Mukdary",
+  "document_number": "Resminama belgisi",
+  "pay_date": "Töleg senesi",
+  "payment_type": "Töleg görnüşi",
   "permitType": {
     "1": "Ikitaraplaýyn",
     "2": "Tranzit",
