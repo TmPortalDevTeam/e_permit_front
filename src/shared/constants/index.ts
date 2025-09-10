@@ -4,3 +4,5 @@ export { default as langs } from './langs';
 export { default as themeModes } from './themeModes';
 export { default as roles } from './roles';
 export { default as perPageLimit } from './perPageLimit';
+export { default as permitTypes } from './permitTypes';
+export { default as paymentType } from './paymentType';

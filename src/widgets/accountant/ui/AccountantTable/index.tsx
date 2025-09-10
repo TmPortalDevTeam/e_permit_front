@@ -1,10 +1,11 @@
 import { perPageLimit } from "@/shared/constants";
-import { Flex, Input, Select, Tag } from "antd";
+import { Button, Flex, Input, Select, Tag } from "antd";
 import { useState } from "react";
 import { useDebounce } from "@/shared/lib/hooks";
 import { useGetEPermits, type EPermit } from "@/entities/e-permit";
 import { useTranslation } from "react-i18next";
 import Table, { type ColumnsType } from "antd/es/table";
+import PaymentMadeModal from "../PaymentMadeModal";
 
 function AccountantTable() {
   const { t } = useTranslation();
@@ -14,6 +15,7 @@ function AccountantTable() {
   const [status, setStatus] = useState<3 | 4>(3);
   const [isLegal, setIsLegal] = useState(false);
   const [searchValue, setSearchValue] = useState('');
+  const [selectedPermit, setSelectedPermit] = useState<EPermit>();
   const debouncedSearchValue = useDebounce(searchValue, 800);
 
   // query
@@ -23,7 +25,7 @@ function AccountantTable() {
   } = useGetEPermits({
     page,
     perPage: limit,
-    is_legal: isLegal,
+    is_legal: !isLegal,
     status: [status],
     text: debouncedSearchValue,
   });
@@ -80,7 +82,7 @@ function AccountantTable() {
       dataIndex: 'is_paid',
       key: 'is_paid',
       render: (_, record) => (
-        <Tag color={record.is_paid ? 'red' : 'green'}>
+        <Tag color={record.is_paid ? 'green' : 'red'}>
           {
             record.is_paid ?
               t('paid')
@@ -88,6 +90,21 @@ function AccountantTable() {
               t('notPaid')
           }
         </Tag>
+      )
+    },
+    {
+      title: t('actions'),
+      dataIndex: 'actions',
+      key: 'actions',
+      render: (_, record) => !record.is_paid && (
+        <>
+          <Button
+            variant="solid"
+            onClick={() => setSelectedPermit(record)}
+          >
+            {t('paymentMade')}
+          </Button>
+        </>
       )
     },
   ];
@@ -138,6 +155,11 @@ function AccountantTable() {
           },
           total: ePermits?.data.count || 0,
         }}
+      />
+      <PaymentMadeModal
+        open={!!selectedPermit}
+        onCancel={() => setSelectedPermit(undefined)}
+        data={selectedPermit!}
       />
     </Flex>
   )

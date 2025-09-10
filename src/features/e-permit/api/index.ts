@@ -1,5 +1,5 @@
 import reqInstance from "@/shared/api";
-import type { EPermitChangeStatusDto, EPermitRejectDto } from "@/entities/e-permit";
+import type { EPermitChangeStatusDto, EPermitRejectDto, PaymentMadeDto } from "@/entities/e-permit";
 
 export const changeEPermitStatus = async (dto: EPermitChangeStatusDto): Promise<void> => {
   return (await reqInstance.post('/admin/e-permit-change-status', dto)).data;
@@ -7,6 +7,10 @@ export const changeEPermitStatus = async (dto: EPermitChangeStatusDto): Promise<
 
 export const rejectEPermit = async (dto: EPermitRejectDto): Promise<void> => {
   return (await reqInstance.post('/admin/e-permit-setstatus7', dto)).data;
+}
+
+export const paymentMade = async (dto: PaymentMadeDto): Promise<void> => {
+  return (await reqInstance.post('/admin/payment/ofline', dto)).data;
 }
 
 export const sendPdfToEmail = async (dto: { id: string, data: FormData }): Promise<{

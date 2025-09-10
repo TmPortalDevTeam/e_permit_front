@@ -10,6 +10,7 @@ import {
   SnippetsOutlined,
   StopOutlined,
   UserOutlined,
+  DownloadOutlined,
 } from "@ant-design/icons";
 import { Link, useLocation } from "@tanstack/react-router";
 import { Menu } from "antd";
@@ -78,6 +79,12 @@ function MenuItems() {
               label: <Link to="/black-history">Black-history</Link>,
             },
           ]
+        },
+        {
+          key: "/admin/apk",
+          icon: <DownloadOutlined />,
+          onClick: () => window.open('/admin/e-permit-v1.0.0.apk', '_blank'),
+          label: <>Mobil programmany ýükle</>,
         },
       ]}
     />

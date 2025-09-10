@@ -3,6 +3,7 @@
   "successfullyDeleted": "Üstünlikli pozuldy",
   "successfullyApproved": "Üstünlikli tassyklandy",
   "successfullyRejected": "Üstünlikli ýatyryldy",
+  "successfully": "Üstünlikli",
   "somethingWentWrong": "Bir zat nädogry boldy",
   "addSupervisor": "Gözegçi goşmak",
   "areYouSure": "Siz hakykatdan hem saýlanan herekedi ýerine ýetirmekçimi?",
@@ -84,6 +85,8 @@
   "emailSent": "Elektron rugsatname elektron poçta ugradyldy!",
   "errorInTugdk": "TUGDK ýagdaý üýtgedilende näsazlyk ýüze çykdy",
   "errorEmail": "Poçta pdf iberilende näsazlyk ýüze çykdy",
+  "actions": "Hereketler",
+  "paymentMade": "Töleg edildi",
   "permitType": {
     "1": "Ikitaraplaýyn",
     "2": "Tranzit",
