@@ -6,7 +6,7 @@ import { usePaymentMade } from '@/features/e-permit';
 import { useEffect } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import { useTranslation } from 'react-i18next';
-import { paymentType, permitTypes } from '@/shared/constants';
+import { paymentType } from '@/shared/constants';
 
 type PaymentMadeModalProps = {
   open: boolean
