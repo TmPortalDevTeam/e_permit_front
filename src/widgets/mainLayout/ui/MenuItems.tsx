@@ -11,80 +11,80 @@ import {
   StopOutlined,
   UserOutlined,
   DownloadOutlined,
-} from "@ant-design/icons";
-import { Link, useLocation } from "@tanstack/react-router";
-import { Menu } from "antd";
+} from '@ant-design/icons';
+import { Link, useLocation } from '@tanstack/react-router';
+import { Menu } from 'antd';
 
 function MenuItems() {
   const location = useLocation();
 
   return (
     <Menu
-      mode="inline"
+      mode='inline'
       selectedKeys={[location.pathname]}
       items={[
         {
-          key: "/admin/",
+          key: '/admin/',
           icon: <AppstoreOutlined />,
-          label: <Link to="/">Baş sahypa</Link>,
+          label: <Link to='/'>Baş sahypa</Link>,
         },
         {
-          key: "/admin/supervisors",
+          key: '/admin/supervisors',
           icon: <SecurityScanOutlined />,
-          label: <Link to="/supervisors">Gözegçiler</Link>,
+          label: <Link to='/supervisors'>Gözegçiler</Link>,
         },
         {
-          key: "/admin/users",
+          key: '/admin/users',
           icon: <UserOutlined />,
-          label: <Link to="/users">Ullanyjylar</Link>,
+          label: <Link to='/users'>Ulanyjylar</Link>,
         },
         {
-          key: "/admin/checkmarks",
+          key: '/admin/checkmarks',
           icon: <SelectOutlined />,
-          label: <Link to="/checkmarks">Merkezi gözegçi</Link>,
+          label: <Link to='/checkmarks'>Merkezi gözegçi</Link>,
         },
         {
-          key: "/admin/accountant",
+          key: '/admin/accountant',
           icon: <DollarOutlined />,
-          label: <Link to="/accountant">Buhgalter</Link>,
+          label: <Link to='/accountant'>Buhgalter</Link>,
         },
         {
-          key: "/admin/dazwol",
+          key: '/admin/dazwol',
           icon: <PaperClipOutlined />,
           label: <span>Dazwol</span>,
           children: [
             {
-              key: "/admin/authorities",
+              key: '/admin/authorities',
               icon: <SnippetsOutlined />,
-              label: <Link to="/authorities">Authorities</Link>,
+              label: <Link to='/authorities'>Authorities</Link>,
             },
             {
-              key: "/admin/quotas",
+              key: '/admin/quotas',
               icon: <BookOutlined />,
-              label: <Link to="/quotas">Quotas</Link>,
+              label: <Link to='/quotas'>Quotas</Link>,
             },
             {
-              key: "/admin/e-permit",
+              key: '/admin/e-permit',
               icon: <ContainerOutlined />,
-              label: <Link to="/e-permit">E-permit</Link>,
+              label: <Link to='/e-permit'>E-permit</Link>,
             },
             {
-              key: "/admin/active-permits",
+              key: '/admin/active-permits',
               icon: <FieldTimeOutlined />,
-              label: <Link to="/active-permits">Active-permits</Link>,
+              label: <Link to='/active-permits'>Active-permits</Link>,
             },
             {
-              key: "/admin/black-history",
+              key: '/admin/black-history',
               icon: <StopOutlined />,
-              label: <Link to="/black-history">Black-history</Link>,
+              label: <Link to='/black-history'>Black-history</Link>,
             },
-          ]
+          ],
         },
         {
-          key: "/admin/apk",
+          key: '/admin/apk',
           icon: <DownloadOutlined />,
           onClick: () => window.open('/admin/e-permit-v1.0.0.apk', '_blank'),
-          label: <>Mobil programmany ýükle</>,
+          label: <>APK</>,
         },
       ]}
     />

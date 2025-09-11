@@ -1,61 +1,57 @@
-import { useGetRoles } from "@/entities/supervisors";
-import type { SupervisorCreateDto } from "@/entities/supervisors/api/types/SupervisorCreateDto";
-import { useCreateSupervisor } from "@/features/supervisors";
-import { Col, Form, Input, Modal, Row, Select } from "antd";
-import { useForm } from "antd/es/form/Form";
+/* eslint-disable @typescript-eslint/no-unsafe-function-type */
+import { useGetRoles } from '@/entities/supervisors';
+import type { SupervisorCreateDto } from '@/entities/supervisors/api/types/SupervisorCreateDto';
+import { useCreateSupervisor } from '@/features/supervisors';
+import { Col, Form, Input, Modal, Row, Select } from 'antd';
+import { useForm } from 'antd/es/form/Form';
 
 type SupervisorCreateModalProps = {
-  open: boolean
-  setOpen: Function
-}
+  open: boolean;
+  setOpen: Function;
+};
 
 function SupervisorCreateModal(props: SupervisorCreateModalProps) {
-  const {
-    open,
-    setOpen,
-  } = props;
+  const { open, setOpen } = props;
 
   const [form] = useForm<SupervisorCreateDto>();
 
   // query
-  const {
-    data: roles,
-    isLoading: rolesLoading,
-  } = useGetRoles({
+  const { data: roles, isLoading: rolesLoading } = useGetRoles({
     page: 1,
     perPage: 100,
   });
   // mutation
-  const {
-    mutate: createSupervisor,
-    isPending: creatingSupervisor,
-  } = useCreateSupervisor();
+  const { mutate: createSupervisor, isPending: creatingSupervisor } =
+    useCreateSupervisor();
 
   const onSubmit = (values: SupervisorCreateDto) => {
-    createSupervisor({
-      name: values.name || 'null',
-      password: values.password,
-      password_name: 'null',
-      role_id: values.role_id,
-      username: values.username
-    }, {
-      onSuccess: () => {
-        setOpen(false);
-        form.resetFields();
+    createSupervisor(
+      {
+        name: values.name || 'null',
+        password: values.password,
+        password_name: 'null',
+        role_id: values.role_id,
+        username: values.username,
+      },
+      {
+        onSuccess: () => {
+          setOpen(false);
+          form.resetFields();
+        },
       }
-    });
-  }
+    );
+  };
 
   return (
     <Modal
-      title="Gözegçi goşmak"
+      title='Gözegçi goşmak'
       open={open}
       onCancel={() => setOpen(false)}
       onOk={() => form.submit()}
-      okText="Goş"
-      cancelText="Ýatyr"
+      okText='Goş'
+      cancelText='Ýatyr'
       okButtonProps={{
-        loading: creatingSupervisor
+        loading: creatingSupervisor,
       }}
     >
       <Form<SupervisorCreateDto>
@@ -67,7 +63,7 @@ function SupervisorCreateModal(props: SupervisorCreateModalProps) {
           <Col span={24}>
             <Form.Item<SupervisorCreateDto>
               name='name'
-              label="F.A.A"
+              label='F.A.A'
               className='formItemMargin'
             >
               <Input />
@@ -76,12 +72,12 @@ function SupervisorCreateModal(props: SupervisorCreateModalProps) {
           <Col span={24}>
             <Form.Item<SupervisorCreateDto>
               name='username'
-              label="Ulgama gireniňizde ullanjak adyňyz"
+              label='Ulgama gireniňizde ulanjak adyňyz'
               className='formItemMargin'
               rules={[
                 {
                   required: true,
-                  message: "Hökmany doldurylmaly meýdança",
+                  message: 'Hökmany doldurylmaly meýdança',
                 },
               ]}
             >
@@ -91,12 +87,12 @@ function SupervisorCreateModal(props: SupervisorCreateModalProps) {
           <Col span={24}>
             <Form.Item<SupervisorCreateDto>
               name='password'
-              label="Açar sözi"
+              label='Açar sözi'
               className='formItemMargin'
               rules={[
                 {
                   required: true,
-                  message: "Hökmany doldurylmaly meýdança",
+                  message: 'Hökmany doldurylmaly meýdança',
                 },
               ]}
             >
@@ -106,17 +102,17 @@ function SupervisorCreateModal(props: SupervisorCreateModalProps) {
           <Col span={24}>
             <Form.Item<SupervisorCreateDto>
               name='role_id'
-              label="Roly"
+              label='Roly'
               className='formItemMargin'
               rules={[
                 {
                   required: true,
-                  message: "Hökmany doldurylmaly meýdança",
+                  message: 'Hökmany doldurylmaly meýdança',
                 },
               ]}
             >
               <Select
-                options={roles?.map(role => ({
+                options={roles?.map((role) => ({
                   label: role.name,
                   value: role.uuid,
                 }))}
@@ -126,8 +122,8 @@ function SupervisorCreateModal(props: SupervisorCreateModalProps) {
           </Col>
         </Row>
       </Form>
-    </Modal >
-  )
+    </Modal>
+  );
 }
 
 export default SupervisorCreateModal;
