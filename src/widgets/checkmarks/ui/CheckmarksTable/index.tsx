@@ -24,7 +24,7 @@ function CheckmarksTable() {
   } = useGetEPermits({
     page,
     perPage: limit,
-    status: [status],
+    status: status,
     text: debouncedSearchValue,
   });
 

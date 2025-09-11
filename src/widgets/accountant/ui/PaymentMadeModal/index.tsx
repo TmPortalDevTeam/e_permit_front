@@ -3,7 +3,6 @@ import { UploadOutlined } from '@ant-design/icons';
 import { type EPermit, type PaymentMadeDto } from '@/entities/e-permit';
 import { useForm } from 'antd/es/form/Form';
 import { usePaymentMade } from '@/features/e-permit';
-import { useEffect } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import { useTranslation } from 'react-i18next';
 import { paymentType } from '@/shared/constants';
@@ -22,10 +21,6 @@ function PaymentMadeModal(props: PaymentMadeModalProps) {
   } = props;
   const { t } = useTranslation();
   const [form] = useForm<Omit<PaymentMadeDto, 'pay_date'> & { pay_date: Dayjs }>();
-
-  useEffect(() => {
-
-  }, [open]);
 
   const {
     mutate: paymentMade,

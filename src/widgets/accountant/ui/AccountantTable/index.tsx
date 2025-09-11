@@ -26,7 +26,7 @@ function AccountantTable() {
     page,
     perPage: limit,
     is_legal: !isLegal,
-    status: [status],
+    status:status,
     text: debouncedSearchValue,
   });
 
