@@ -13,7 +13,7 @@ function CheckmarksTable() {
   // filters
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(perPageLimit);
-  const [status, setStatus] = useState<1 | 2>(1);
+  const [status, setStatus] = useState<1 | 2 | 6>(1);
   const [searchValue, setSearchValue] = useState('');
   const debouncedSearchValue = useDebounce(searchValue, 800);
 
@@ -112,7 +112,8 @@ function CheckmarksTable() {
           onChange={(value) => setStatus(value)}
           options={[
             { label: t('newGiven'), value: 1 },
-            { label: t('rejected'), value: 2 }
+            { label: t('underConsideration'), value: 2 },
+            { label: t('rejected'), value: 6 }
           ]}
         />
       </Flex>
