@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { getPermits } from "@/entities/e-permit";
+import { getPermits, type PermitGetDto } from "@/entities/e-permit";
 
-const useGetPermits = () => {
+const useGetPermits = (dto: PermitGetDto) => {
   return useQuery({
-    queryFn: () => getPermits(),
+    queryFn: () => getPermits(dto),
     queryKey: ['permits'],
   })
 }

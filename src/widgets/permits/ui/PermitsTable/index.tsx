@@ -13,6 +13,7 @@ type PermitsTableProps = {
 
 function PermitsTable({ isActive = false }: PermitsTableProps) {
   const navigate = useNavigate();
+  const [page, setPage] = useState(1);
   const { t } = useTranslation();
   const [localPermits, setLocalPermits] = useState<Permit[]>([]);
 
@@ -20,16 +21,18 @@ function PermitsTable({ isActive = false }: PermitsTableProps) {
   const {
     data: permits,
     isLoading: permitsLoading,
-  } = useGetPermits();
+  } = useGetPermits({
+    page : page - 1,
+  });
 
   useEffect(() => {
-    if (!permitsLoading && permits?.data.length) {
+    if (!permitsLoading && permits?.data.content.length) {
       if (isActive)
-        setLocalPermits(permits.data.filter(permit => permit.used))
+        setLocalPermits(permits.data.content.filter(permit => permit.used))
       else
-        setLocalPermits(permits.data);
+        setLocalPermits(permits.data.content);
     }
-  }, [permitsLoading, permits?.data.length, isActive])
+  }, [permitsLoading, permits?.data.content.length, isActive])
 
   const tableColumns: ColumnsType<Permit> = [
     {
@@ -104,6 +107,15 @@ function PermitsTable({ isActive = false }: PermitsTableProps) {
           navigate({ to: `/e-permit/${record.id}` })
         }
       })}
+      pagination={{
+        defaultPageSize: 10,
+        position: ["bottomRight"],
+        showSizeChanger: true,
+        onChange: (page) => {
+          setPage(page);
+        },
+        total: permits?.data.total_elements || 0,
+      }}
       rowClassName="cursor-pointer"
     />
   )

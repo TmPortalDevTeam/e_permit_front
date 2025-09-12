@@ -5,6 +5,7 @@ export type { EPermitRejectDto } from './api/types/EPermitRejectDto';
 export type { Permit } from './api/types/Permit';
 export type { PermitFull } from './api/types/PermitFull';
 export type { PaymentMadeDto } from './api/types/PaymentMadeDto';
+export type { PermitGetDto } from './api/types/PermitGetDto';
 export { default as useGetEPermits } from './api/useGetEPermits';
 export { default as useGetEPermit } from './api/useGetEPermit';
 export { default as useGetPermits } from './api/useGetPermits';
